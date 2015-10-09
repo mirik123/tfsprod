@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidtfsprodPkg">
+    <Groups>
+      <Group guid="guidtfsprodCmdSet" id="CustomTeamExpQueryGroup" priority="0x0600">
+        <Parent guid="guidTeamExpQueryGroup" id="TeamExpQueryGroup"/>
+      </Group>
+      
+     <Group guid="guidtfsprodCmdSet" id="CustomWIExp" priority="0x0600">
+        <Parent guid="guidWIExp" id="menuWIExp" />
+      </Group>
+
+      <Group guid="guidtfsprodCmdSet" id="CustomSourceControlExp" priority="0x0600">
+        <Parent guid="guidSourceControlExp" id="menuSourceControlExp" />
+      </Group>    
+
+      <Group guid="guidtfsprodCmdSet" id="CustHistExp" priority="0x0600">
+        <Parent guid="guidHistExp" id="menuHistExp" />
+      </Group>
+    </Groups>
+    
+    <Buttons>
+     <Button guid="guidtfsprodCmdSet" id="cmdidQueryLinkTypes" priority="0x0100" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustomTeamExpQueryGroup" />
+        <Icon guid="guidImages4" id="bmpQueryLinkTypes" />
+        <Strings>
+          <CommandName>cmdidQueryLinkTypes</CommandName>
+          <ButtonText>Change Query Link Types</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidtfsprodCmdSet" id="cmdidExportWord" priority="0x0100" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustomTeamExpQueryGroup" />
+        <Icon guid="guidImages3" id="bmpExportWord" />
+        <Strings>
+          <CommandName>cmdidExportWord</CommandName>
+          <ButtonText>Export to Microsoft Word</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="guidtfsprodCmdSet" id="cmdidDestroyWI" priority="0x0100" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustomWIExp" />
+        <Icon guid="guidImages2" id="bmpWIExp" />
+        <Strings>
+          <CommandName>cmdidDestroyWI</CommandName>
+          <ButtonText>Destroy Work Items</ButtonText>
+        </Strings>
+      </Button>
+     
+    <Button guid="guidtfsprodCmdSet" id="MyWIExpMergeID" priority="0x0100" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustomWIExp" />
+        <Icon guid="guidImages1" id="bmpWIExpMerge" />
+        <Strings>
+          <CommandName>MyWIExpMergeID</CommandName>
+          <ButtonText>Merge Work Items</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidtfsprodCmdSet" id="MySCQuMergeID" priority="0x0100" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustomSourceControlExp" />
+        <Icon guid="guidImages1" id="bmpWIExpMerge" />
+        <Strings>
+          <CommandName>MySCQuMergeID</CommandName>
+          <ButtonText>Merge Changesets</ButtonText>
+        </Strings>
+      </Button>
+    
+    <Button guid="guidtfsprodCmdSet" id="cmdidGetPreview" priority="0x0100" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustomSourceControlExp" />
+        <Icon guid="guidImages1" id="bmpWIExpMerge" />
+        <Strings>
+          <CommandName>cmdidGetPreview</CommandName>
+          <ButtonText>Emulate Get-Preview</ButtonText>
+        </Strings>
+      </Button>
+    
+    <Button guid="guidtfsprodCmdSet" id="MySCQuModifyTimeID" priority="0x0200" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustomSourceControlExp" />
+        <Icon guid="guidImages5" id="bmpSCExp" />
+        <Strings>
+          <CommandName>MySCQuModifyTimeID</CommandName>
+          <ButtonText>Update Modification Time</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidtfsprodCmdSet" id="MySCHistModifyTimeID" priority="0x0200" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustHistExp" />
+        <Icon guid="guidImages5" id="bmpSCExp" />
+        <Strings>
+          <CommandName>MySCHistModifyTimeID</CommandName>
+          <ButtonText>Update Modification Time</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidtfsprodCmdSet" id="MyHistModifyTimeID" priority="0x0200" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustHistExp" />
+        <Icon guid="guidImages5" id="bmpSCExp" />
+        <Strings>
+          <CommandName>MyHistModifyTimeID</CommandName>
+          <ButtonText>Update Changeset Time</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+   
+    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+    <Bitmaps>
+      <Bitmap guid="guidImages1" href="Resources\stock_mail-send-receive.png" usedList="bmpWIExpMerge"/>
+      <Bitmap guid="guidImages2" href="Resources\gtk-cut.png" usedList="bmpWIExp" />
+      <Bitmap guid="guidImages3" href="Resources\x-office-document-template.png" usedList="bmpExportWord"/>
+      <Bitmap guid="guidImages4" href="Resources\package_office.png" usedList="bmpQueryLinkTypes" />
+      <Bitmap guid="guidImages5" href="Resources\dialog-information.png" usedList="bmpSCExp"/>
+    </Bitmaps>
+ 
+  </Commands>
+
+
+
+
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidtfsprodPkg" value="{16bf0a1d-6239-485f-ac25-6fcd37d514c7}" />
+
+    <GuidSymbol name="guidImages3" value="{65b0ffba-f6ab-437e-a6f7-ddc92330c407}" >
+      <IDSymbol name="bmpExportWord" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidImages4" value="{65b0ffba-f6ab-437e-a6f7-ddc92330c408}" >
+      <IDSymbol name="bmpQueryLinkTypes" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidImages2" value="{65b0ffba-f6ab-437e-a6f7-ddc92330c409}" >
+      <IDSymbol name="bmpWIExp" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidImages1" value="{65b0ffba-f6ab-437e-a6f7-ddc92330c411}" >
+      <IDSymbol name="bmpWIExpMerge" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidImages5" value="{65b0ffba-f6ab-437e-a6f7-ddc92330c412}" >
+      <IDSymbol name="bmpSCExp" value="1" />
+    </GuidSymbol>
+    
+    <!--GuidSymbol name="guidTeamExpQueryGroup" value="{2DC8D6BB-916C-4B80-9C52-FD8FC371ACC2}">
+      <IDSymbol name="TeamExpQueryGroup" value="0x0203" />
+    </GuidSymbol--> 
+    <GuidSymbol name="guidTeamExpQueryGroup" value="{2DC8D6BB-916C-4B80-9C52-FD8FC371ACC2}">
+      <IDSymbol name="TeamExpQueryGroup" value="0x0300" />
+    </GuidSymbol>    
+    <GuidSymbol name="guidWIExp" value="{2DC8D6BB-916C-4B80-9C52-FD8FC371ACC2}">
+      <IDSymbol name="menuWIExp" value="0x205" />
+    </GuidSymbol>    
+    <GuidSymbol name="guidSourceControlExp" value="{FFE1131C-8EA1-4D05-9728-34AD4611BDA9}" >
+      <IDSymbol name="menuSourceControlExp" value="0x1011"/>
+    </GuidSymbol>
+    <GuidSymbol name="guidHistExp" value="{FFE1131C-8EA1-4D05-9728-34AD4611BDA9}">
+      <IDSymbol name="menuHistExp" value="0x1040" />
+    </GuidSymbol>   
+  
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="guidtfsprodCmdSet" value="{45982852-bea4-4f30-951e-8d426535ee39}">
+      <IDSymbol name="CustomTeamExpQueryGroup" value="0x5103" />
+      <IDSymbol name="cmdidExportWord" value="0x5019" />
+      <IDSymbol name="cmdidQueryLinkTypes" value="0x5018" />
+      <IDSymbol name="CustomWIExp" value="0x5102" />
+      <IDSymbol name="cmdidDestroyWI" value="0x5020" />
+      <IDSymbol name="MyWIExpMergeID" value="0x5008" />
+      <IDSymbol name="CustomSourceControlExp" value="0x5101" />
+      <IDSymbol name="cmdidGetPreview" value="0x5021" />
+      <IDSymbol name="MySCQuMergeID" value="0x5006" />
+      <IDSymbol name="MySCQuModifyTimeID" value="0x5012" />
+      <IDSymbol name="CustHistExp" value="0x5100" />
+      <IDSymbol name="MySCHistModifyTimeID" value="0x5016" />
+      <IDSymbol name="MyHistModifyTimeID" value="0x5017" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
