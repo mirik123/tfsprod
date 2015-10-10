@@ -20,50 +20,50 @@ The extensions was tested with Visual Studio 2012 only.
 
 For installing anyone of the extensions double-click on VSIX file and follow the installer instructions.
 
-[image001](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image001)
+![image001](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image001_thumb.png)
 
 ### ChangeLinkTypes
 
 This extension modifies link types between the Work Items returned from Work Item query.<br/>
 To execute it select any query under Work Items node in Team Explorer window and click on **"Change Query Link Types"**.
 
-image002
+![ChangeLinkTypes](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/ChangeLinkTypes.png)
 
 After that, in next dialog choose original and new wanted link types.
 
-image003
+![image003](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image003_thumb.png)
 
 ### DestroyWorkItems
 
 This extension completely destroys (not closes) Work Items returned from Work Item query.<br/>
 To execute it select a number of Work Items in Query Results window and click on  **"Destroy Work Items"**.
 
-image004
+![DestroyWorkItems](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/DestroyWorkItems.png)
 
 ### Export2Word
 
 This extension exports Work Items returned from Work Item query to Microsoft Word document in paragraph style. It uses MS Office Interop package and requires a local installation of Word.<br/>
 To execute it select any query under Work Items node in Team Explorer window and click on **"Export to Microsoft Word"**.
 
-image005
+![Export2Word](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/Export2Word.png)
 
 ### ExtendedMerge
 
 Extended Merge extension provides workaround for several merge features not implemented by TFS:<br/>
-1. TFS merge leads to bulk check-in operation that puts files from all previous changesets into one big merge changeset. 
-2. TFS allows only for consecutive changesets being cherry-peeked by merge operation. 
-3. TFS doesn’t allow choosing changesets for cherry-peek merge by selecting work items. 
-4. TFS merge dialog doesn’t have “force” and “baseless” options. 
+  1. TFS merge leads to bulk check-in operation that puts files from all previous changesets into one big merge changeset. 
+  2. TFS allows only for consecutive changesets being cherry-peeked by merge operation. 
+  3. TFS doesn’t allow choosing changesets for cherry-peek merge by selecting work items. 
+  4. TFS merge dialog doesn’t have “force” and “baseless” options. 
 
 #### Initializing ExtendedMerge extension
 
 The list of merge candidates can be obtained in two ways:<br/>
-1. From Source Control Explorer window.<br/>
-⋅⋅⋅In this case all history changesets for a specific server path are parsed.⋅⋅
-image006 
-2. From Query Results window.<br/>
-⋅⋅⋅In this case all changesets, linked to the selected Work Items are parsed.⋅⋅
-image007 
+  1. From Source Control Explorer window.<br/>
+    In this case all history changesets for a specific server path are parsed.  
+![image006](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image006_thumb.png) 
+  2. From Query Results window.<br/>
+    In this case all changesets, linked to the selected Work Items are parsed.  
+![image007](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image007_thumb.png)  
 
 After initialization stage extension opens Visual Studio tool window pane with a grid that shows useful information about parsed changesets:
 * Checked/unchecked status. 
@@ -73,14 +73,14 @@ After initialization stage extension opens Visual Studio tool window pane with a
 * Changeset creator. 
 * The change types this changeset contains. 
 * Possible merge options 
-⋅⋅* None – merge is impossible (don’t mess with “discard” commandline option) 
-⋅⋅* Baseless – baseless merge 
-⋅⋅* Force – force merge 
-⋅⋅* Candidate – regular merge 
+   * None – merge is impossible (don’t mess with “discard” commandline option) 
+   * Baseless – baseless merge 
+   * Force – force merge 
+   * Candidate – regular merge 
 * Merge source path (can be modified). 
 * Changeset comment field. 
 
-image008
+![image008](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image008_thumb.jpg) 
 
 The Merge Target Location field contains the path to a folder or a branch in source control.<br/>
 <br/>
@@ -90,7 +90,7 @@ Merge types are calculated based on shared Merge Target Location path and an ind
 
 Extension runs all actions from toolbar buttons (some of them are duplicated on grid context menu also).
 
-image009
+![image009](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image009_thumb.png) 
 
  
 |Menu item name|Menu item description|
@@ -115,9 +115,9 @@ image009
 During merge operation merge conflicts can occur.<br/>
 In this case click on OK button and resolve conflicts with standard TFS Resolve Conflicts dialog.
 
-image010
+![image010](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image010_thumb.png) 
 
-image011
+![image011](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image011_thumb.png) 
 
 ### GetPreview
 
@@ -126,28 +126,28 @@ To execute it select a path in Source Control Explorer window and click on  **"E
 <br/>
 The results are print to Output window.
 
-image012
+![GetPreview](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/GetPreview.png) 
 
 ### ModifyCheckinDate
 
 This extension consists from 2 parts:<br/>
-1. Updates modification time for checked-out files to their latest check-in time.<br/>
-⋅⋅⋅It is accessible from Source Control window & History window.⋅⋅
-2. Directly modifies changeset's check-in time in TFS database.<br/>
-⋅⋅⋅It actually runs SQL statement: UPDATE tbl_Changeset SET CreationDate=’?’ WHERE ChangeSetId=‘?’⋅⋅
-⋅⋅⋅It is accessible from History window. ⋅⋅
+  1. Updates modification time for checked-out files to their latest check-in time.<br/>
+    It is accessible from Source Control window & History window.  
+  2. Directly modifies changeset's check-in time in TFS database.<br/>
+    It actually runs SQL statement: ````UPDATE tbl_Changeset SET CreationDate=’?’ WHERE ChangeSetId=‘?’````
+    <br/>It is accessible from History window.   
 
-image013
+![image013](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image013_thumb.png) 
 
-image014
+![image014](https://github.com/mirik123/tfsprod/raw/master/tfsprod/Resources/image014_thumb.png) 
 
 ### Release Notes
 The ExtendedMerge uses a number of internal Microsoft classes. It can possibly lead to some tool malfunction in the next TFS versions: 
 
 |Feature |Classes|
 |--------|-------|
-|Show browse server folder dialog |Microsoft.TeamFoundation.Build.Controls.VersionControlHelper.ShowServerFolderBrowser| 
-|Show merge progress dialog |Microsoft.TeamFoundation.VersionControl.Controls.ProgressMerge |
-|Show resolve conflicts dialog |Microsoft.TeamFoundation.Client.Arguments<br/>Microsoft.TeamFoundation.VersionControl.CommandLine.CommandResolve |
+|Show browse server folder dialog |*Microsoft.TeamFoundation.Build.Controls.VersionControlHelper.ShowServerFolderBrowser*| 
+|Show merge progress dialog |*Microsoft.TeamFoundation.VersionControl.Controls.ProgressMerge*|
+|Show resolve conflicts dialog |*Microsoft.TeamFoundation.Client.Arguments<br/>Microsoft.TeamFoundation.VersionControl.CommandLine.CommandResolve*|
 <br/>
 Extension packages used icons from GNOME project:  http://art.gnome.org/themes/icon 
