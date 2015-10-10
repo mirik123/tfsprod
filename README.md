@@ -146,8 +146,8 @@ The ExtendedMerge uses a number of internal Microsoft classes. It can possibly l
 
 |Feature |Classes|
 |--------|-------|
-|Show browse server folder dialog |*Microsoft.TeamFoundation.Build.Controls.<br/>VersionControlHelper.ShowServerFolderBrowser*| 
-|Show merge progress dialog |*Microsoft.TeamFoundation.VersionControl.<br/>Controls.ProgressMerge*|
-|Show resolve conflicts dialog |*Microsoft.TeamFoundation.Client.Arguments<br/>Microsoft.TeamFoundation.VersionControl.<br/>CommandLine.CommandResolve*|
+|Show browse server folder dialog |*Microsoft.TeamFoundation.Build.Controls.VersionControlHelper.ShowServerFolderBrowser*| 
+|Show merge progress dialog |*Microsoft.TeamFoundation.VersionControl.Controls.ProgressMerge*|
+|Show resolve conflicts dialog |*Microsoft.TeamFoundation.Client.Arguments<br/>Microsoft.TeamFoundation.VersionControl.CommandLine.CommandResolve*|
 <br/>
 Extension packages used icons from GNOME project:  http://art.gnome.org/themes/icon 
