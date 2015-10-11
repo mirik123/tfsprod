@@ -29,7 +29,7 @@ namespace TFSExp.ExtendedMerge
         }
 
         [Category("Enable Extensions")]
-        [DisplayName("Change Query Link Types")]
+        [DisplayName("Change Work Item link types")]
         public bool cmdidQueryLinkTypes { get; set;}
 
         [Category("Enable Extensions")]
@@ -52,26 +52,30 @@ namespace TFSExp.ExtendedMerge
         [DisplayName("Update Changeset Time")]
         public bool cmdidHistModifyTime { get; set;}
 
-       /**[Category("IDE Settings")]
-        [DisplayName("Set Visual Studio IDE Path")]
-        [Description("Visual Studio IDE Path")]
-        [Editor("System.Windows.Forms.Design.FolderNameEditor, System.Design, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
-        public string IDEPath
-        {
-            get { return pIDEPath; }
-            set
-            {
-                if (!System.IO.File.Exists(value + "\\tf.exe"))
-                {
-                    MessageBox.Show("Path to Visual Studio IDE folder is incorrect.");
-                    pIDEPath = "";
-                }
-                else
-                {
-                    pIDEPath = value;
-                }
-            }
-        */
+        [Category("Enable Extensions")]
+        [DisplayName("Link Changesets to Work Item")]
+        public bool cmdidHistLinkWI { get; set; }
+
+        /**[Category("IDE Settings")]
+         [DisplayName("Set Visual Studio IDE Path")]
+         [Description("Visual Studio IDE Path")]
+         [Editor("System.Windows.Forms.Design.FolderNameEditor, System.Design, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor))]
+         public string IDEPath
+         {
+             get { return pIDEPath; }
+             set
+             {
+                 if (!System.IO.File.Exists(value + "\\tf.exe"))
+                 {
+                     MessageBox.Show("Path to Visual Studio IDE folder is incorrect.", Utilities.AppTitle);
+                     pIDEPath = "";
+                 }
+                 else
+                 {
+                     pIDEPath = value;
+                 }
+             }
+         */
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OptionPageGrid"/> class.
@@ -85,7 +89,8 @@ namespace TFSExp.ExtendedMerge
            //pIDEPath = dtpath;
            //
 
-            cmdidDestroy = cmdidExpMerge = cmdidExportWord = cmdidGetPreview = cmdidHistModifyTime = cmdidQueryLinkTypes = true;
+            cmdidDestroy = cmdidExpMerge = cmdidExportWord = cmdidGetPreview = true;
+            cmdidHistLinkWI = cmdidHistModifyTime = cmdidQueryLinkTypes = true;
         }
     }
 }

@@ -28,7 +28,7 @@
         <Icon guid="guidImages4" id="bmpQueryLinkTypes" />
         <Strings>
           <CommandName>cmdidQueryLinkTypes</CommandName>
-          <ButtonText>Change Query Link Types</ButtonText>
+          <ButtonText>Change Work Item link types</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidtfsprodCmdSet" id="cmdidExportWord" priority="0x0100" type="Button">
@@ -37,6 +37,15 @@
         <Strings>
           <CommandName>cmdidExportWord</CommandName>
           <ButtonText>Export to Microsoft Word</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="guidtfsprodCmdSet" id="cmdidCopyComment" priority="0x0100" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustomWIExp" />
+        <Icon guid="guidImages2" id="bmpWIExp" />
+        <Strings>
+          <CommandName>cmdidCopyComment</CommandName>
+          <ButtonText>Copy Comment from Changeset</ButtonText>
         </Strings>
       </Button>
       
@@ -100,6 +109,15 @@
         <Strings>
           <CommandName>MyHistModifyTimeID</CommandName>
           <ButtonText>Update Changeset Time</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidtfsprodCmdSet" id="MyHistLinkWI" priority="0x0200" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustHistExp" />
+        <Icon guid="guidImages4" id="bmpQueryLinkTypes" />
+        <Strings>
+          <CommandName>MyHistLinkWI</CommandName>
+          <ButtonText>Link Changesets to Work Item</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -170,6 +188,8 @@
       <IDSymbol name="CustHistExp" value="0x5100" />
       <IDSymbol name="MySCHistModifyTimeID" value="0x5016" />
       <IDSymbol name="MyHistModifyTimeID" value="0x5017" />
+      <IDSymbol name="MyHistLinkWI" value="0x5104" />
+      <IDSymbol name="cmdidCopyComment" value="0x5105" />  
     </GuidSymbol>
   </Symbols>
 </CommandTable>

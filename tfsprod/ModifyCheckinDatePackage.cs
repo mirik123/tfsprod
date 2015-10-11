@@ -78,7 +78,7 @@ namespace TFSExt.ModifyCheckinDate
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         public static void MyHistModifyTimeCallback(object sender, EventArgs e)
         {
-            //MessageBox.Show("Update Changeset Time");
+            //MessageBox.Show("Update Changeset Time", Utilities.AppTitle);
             int[] chids = Utilities.vcext.History.ActiveWindow.SelectedChangesets.Select(x => x.ChangesetId).ToArray();
             if (chids == null || chids.Length == 0) return;
 
@@ -93,7 +93,7 @@ namespace TFSExt.ModifyCheckinDate
             }
             catch
             {
-                MessageBox.Show("Invalid Date/Time specified.");
+                MessageBox.Show("Invalid Date/Time specified.", Utilities.AppTitle);
                 return;
             }
 

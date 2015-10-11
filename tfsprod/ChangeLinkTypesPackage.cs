@@ -1,6 +1,8 @@
 ﻿using Microsoft.TeamFoundation.Controls;
+using Microsoft.TeamFoundation.VersionControl.Client;
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.TeamFoundation.WorkItemTracking;
 using Microsoft.VisualStudio.TeamFoundation.WorkItemTracking.Extensibility;
 using System;
 using System.Collections;
@@ -14,6 +16,71 @@ namespace TFSExt.ChangeLinkTypes
 {
     public static class ChangeLinkTypesPackage
     {
+        public static void CopyChangesetComments(object sender, EventArgs e)
+        {
+            object _lockToken2 = new object();
+           
+            IWorkItemTrackingDocument doc2 = Utilities.docsrv2.FindDocument(Utilities.dte.ActiveDocument.FullName, _lockToken2);
+            if (doc2 == null) return;
+
+            try
+            {
+                foreach (int i in (doc2 as IResultsDocument).SelectedItemIds)
+                {
+                    var wi = Utilities.wistore.GetWorkItem(i);
+                    foreach (var link in wi.Links.OfType<ExternalLink>())
+                    {
+                        var ch = Utilities.vcsrv.ArtifactProvider.GetChangeset(new Uri(link.LinkedArtifactUri));
+                        link.Comment = ch.Comment;
+                        wi.Save();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Utilities.OutputCommandString(ex.ToString());
+                MessageBox.Show(ex.InnerException != null ? ex.InnerException.Message : ex.Message, Utilities.AppTitle);
+            }
+
+            doc2.Release(_lockToken2);
+        }
+        
+        public static void LinkChangesetsToWICallback(object sender, EventArgs e)
+        {
+            var chlinktype = Utilities.wistore.RegisteredLinkTypes["Fixed in Changeset"];
+            var changesets = Utilities.vcext.History.ActiveWindow.SelectedChangesets.Select(x => Utilities.vcsrv.GetChangeset(x.ChangesetId));
+            if (changesets == null || changesets.Count() == 0)
+            {
+                MessageBox.Show("Select one or more Changesets.", Utilities.AppTitle);
+                return;
+            }
+
+            var workitems = Utilities.ShowWorkItemPickerDialog();
+            if (workitems == null || workitems.Count() == 0)
+            {
+                MessageBox.Show("Select one or more WorkItems.", Utilities.AppTitle);
+                return;
+            }
+
+            foreach (var wi in workitems)
+            {
+                var oldlinks = wi.Links
+                    .OfType<ExternalLink>()
+                    .Select(x => Utilities.vcsrv.ArtifactProvider.GetChangeset(new Uri(x.LinkedArtifactUri)).ChangesetId)
+                    .ToList();
+
+                foreach (Changeset ch in changesets.Where(x => !oldlinks.Contains(x.ChangesetId)))
+                {
+                    wi.Links.Add(new ExternalLink(chlinktype, ch.ArtifactUri.AbsoluteUri) 
+                    { 
+                        Comment = ch.Comment
+                    });
+                }
+            }
+
+            MessageBox.Show("Links added sucessfully.", Utilities.AppTitle);
+        }
+        
         public static void QueryLinkTypesCallback(object sender, EventArgs e)
         {
             //IntPtr hier;

@@ -181,8 +181,8 @@ namespace TFSExp.ExtendedMerge
         private void button1_Click(object sender, EventArgs e)
         {
             string srvpath;
-            
-            MergeFactory.ShowServerFolderDlg(this, defServerName, out srvpath);
+
+            Utilities.ShowServerFolderDlg(this, defServerName, out srvpath);
             defServerName = srvpath;
             SetMergeTypes();
         }
@@ -258,13 +258,13 @@ namespace TFSExp.ExtendedMerge
             {
                 int ch = ClickedItem.ChangesetID;
                 //show changeset details dialog
-                MergeFactory.ShowChangesetDetailsDlg(ch);
+                Utilities.ShowChangesetDetailsDlg(ch);
             }
             else if (e.ClickedItem.Name == "viewWorkItemDetailesToolStripMenuItem")
             {
                 int wi = ClickedItem.WorkitemID;
                 //show workitem details dialog
-                if (wi != 0) MergeFactory.ShowWorkItemDetailsDlg(wi);
+                if (wi != 0) Utilities.ShowWorkItemDetailsDlg(wi);
             }
             else if (e.ClickedItem.Name == "copyToClipboardToolStripMenuItem")
             {
@@ -278,7 +278,7 @@ namespace TFSExp.ExtendedMerge
             {
                 string srvpath = ClickedItem.sourcePath;
                 //goto source path
-                MergeFactory.SelectVersionControlServerPath(srvpath);
+                Utilities.SelectVersionControlServerPath(srvpath);
             }
             else if (e.ClickedItem.Name == "editSourcePathToolStripMenuItem")
             {
@@ -409,7 +409,7 @@ namespace TFSExp.ExtendedMerge
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void toolResolve_Click(object sender, EventArgs e)
         {
-            MergeFactory.ShowResolveConflictsDlg();
+            Utilities.ShowResolveConflictsDlg();
         }
 
         /// <summary>
@@ -421,7 +421,7 @@ namespace TFSExp.ExtendedMerge
         private void toolDChangeset_Click(object sender, EventArgs e)
         {
             int ch = ClickedItem.ChangesetID;
-            MergeFactory.ShowChangesetDetailsDlg(ch);
+            Utilities.ShowChangesetDetailsDlg(ch);
         }
 
         /// <summary>
@@ -433,8 +433,8 @@ namespace TFSExp.ExtendedMerge
         private void toolDWorkItem_Click(object sender, EventArgs e)
         {
             int wi = ClickedItem.WorkitemID;
-            if (wi != 0) MergeFactory.ShowWorkItemDetailsDlg(wi);
-            else MessageBox.Show("No WorkItem is connected to Changeset " + ClickedItem.ChangesetID);
+            if (wi != 0) Utilities.ShowWorkItemDetailsDlg(wi);
+            else MessageBox.Show("No WorkItem is connected to Changeset " + ClickedItem.ChangesetID, Utilities.AppTitle);
         }
 
         /// <summary>
@@ -446,7 +446,7 @@ namespace TFSExp.ExtendedMerge
         private void toolDServerPath_Click(object sender, EventArgs e)
         {
             string srvpath = ClickedItem.sourcePath;
-            MergeFactory.SelectVersionControlServerPath(srvpath);
+            Utilities.SelectVersionControlServerPath(srvpath);
         }
 
         /// <summary>
@@ -529,7 +529,7 @@ namespace TFSExp.ExtendedMerge
             string str1 = MergeFactory.GetRelatedBranches(defServerName).Aggregate((x, y) => x + Environment.NewLine + "---" + y);
             string str2 = MergeFactory.GetRelatedBranches(ClickedItem.sourcePath).Aggregate((x, y) => x + Environment.NewLine + "---" + y);
 
-            MessageBox.Show("Related branches for merge target path:" + Environment.NewLine + "---" + str1 + Environment.NewLine + "Related branches for merge source path:" + Environment.NewLine + "---" + str2);
+            MessageBox.Show("Related branches for merge target path:" + Environment.NewLine + "---" + str1 + Environment.NewLine + "Related branches for merge source path:" + Environment.NewLine + "---" + str2, Utilities.AppTitle);
         }
     }
 }

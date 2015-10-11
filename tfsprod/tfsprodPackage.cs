@@ -103,6 +103,16 @@ namespace tfsprod
                 menuItem = new OleMenuCommand(TFSExt.ModifyCheckinDate.ModifyCheckinDatePackage.MySCHistModifyTimeCallback, menuCommandID);
                 mcs.AddCommand(menuItem);
                 menuItem.BeforeQueryStatus += menuItem_BeforeQueryStatus;
+
+                menuCommandID = new CommandID(GuidList.guidtfsprodCmdSet, (int)PkgCmdIDList.MyHistLinkWI);
+                menuItem = new OleMenuCommand(TFSExt.ChangeLinkTypes.ChangeLinkTypesPackage.LinkChangesetsToWICallback, menuCommandID);
+                mcs.AddCommand(menuItem);
+                menuItem.BeforeQueryStatus += menuItem_BeforeQueryStatus;
+
+                menuCommandID = new CommandID(GuidList.guidtfsprodCmdSet, (int)PkgCmdIDList.cmdidCopyComment);
+                menuItem = new OleMenuCommand(TFSExt.ChangeLinkTypes.ChangeLinkTypesPackage.CopyChangesetComments, menuCommandID);
+                mcs.AddCommand(menuItem);
+                menuItem.BeforeQueryStatus += menuItem_BeforeQueryStatus;   
             }
         }
 
@@ -121,6 +131,8 @@ namespace tfsprod
                 case (int)PkgCmdIDList.MySCQuModifyTimeID: cmdName = "cmdidHistModifyTime"; break;
                 case (int)PkgCmdIDList.MyHistModifyTimeID: cmdName = "cmdidHistModifyTime"; break;
                 case (int)PkgCmdIDList.MySCHistModifyTimeID: cmdName = "cmdidHistModifyTime"; break;
+                case (int)PkgCmdIDList.MyHistLinkWI: cmdName = "cmdidHistLinkWI"; break;
+                case (int)PkgCmdIDList.cmdidCopyComment: cmdName = "cmdidCopyComment"; break;
                 default: return;
             }
 
@@ -135,8 +147,6 @@ namespace tfsprod
 
             var TFSExt = dte.GetObject("Microsoft.VisualStudio.TeamFoundation.TeamFoundationServerExt") as TeamFoundationServerExt;
             var vcext = dte.GetObject("Microsoft.VisualStudio.TeamFoundation.VersionControl.VersionControlExt") as VersionControlExt;
-            //var test = dte.GetObject("Microsoft.VisualStudio.TeamFoundation.WorkItemTracking.Extensibility.IWorkItemQueriesExt") as IWorkItemQueriesExt;
-            //var test2 = GetService(typeof(IWorkItemQueriesExt)) as IWorkItemQueriesExt;
 
             var tfscoll = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(TFSExt.ActiveProjectContext.DomainUri));
             tfscoll.Connect(Microsoft.TeamFoundation.Framework.Common.ConnectOptions.None);

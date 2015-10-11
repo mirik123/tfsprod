@@ -15,7 +15,6 @@ namespace TFSExt.DestroyWorkItems
 
             try
             {
-
                 object _lockToken1 = new object();
                 object _lockToken2 = new object();
 

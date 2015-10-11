@@ -4,14 +4,10 @@
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\Package.ico</ApplicationIcon>
@@ -248,6 +244,16 @@
     <Resource Include="Resources\GetPreview.png" />
     <Resource Include="Resources\gtk-cut.png" />
     <Resource Include="Resources\ModifyCheckinDate.png" />
+    <Resource Include="Resources\image001_thumb.png" />
+    <Resource Include="Resources\image003_thumb.png" />
+    <Resource Include="Resources\image006_thumb.png" />
+    <Resource Include="Resources\image007_thumb.png" />
+    <Resource Include="Resources\image008_thumb.jpg" />
+    <Resource Include="Resources\image009_thumb.png" />
+    <Resource Include="Resources\image010_thumb.png" />
+    <Resource Include="Resources\image011_thumb.png" />
+    <Resource Include="Resources\image013_thumb.png" />
+    <Resource Include="Resources\image014_thumb.png" />
     <Content Include="Resources\Package.ico" />
     <Resource Include="Resources\stock_mail-send-receive.png" />
     <Content Include="Resources\The MIT License %28MIT%29.txt">
