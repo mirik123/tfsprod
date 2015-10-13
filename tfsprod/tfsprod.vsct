@@ -45,7 +45,7 @@
         <Icon guid="guidImages2" id="bmpWIExp" />
         <Strings>
           <CommandName>cmdidCopyComment</CommandName>
-          <ButtonText>Copy Comment from Changeset</ButtonText>
+          <ButtonText>Copy Changeset comments</ButtonText>
         </Strings>
       </Button>
       

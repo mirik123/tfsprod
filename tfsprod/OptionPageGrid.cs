@@ -56,6 +56,10 @@ namespace TFSExp.ExtendedMerge
         [DisplayName("Link Changesets to Work Item")]
         public bool cmdidHistLinkWI { get; set; }
 
+        [Category("Enable Extensions")]
+        [DisplayName("Copy Changeset comments")]
+        public bool cmdidCopyComment { get; set; }
+
         /**[Category("IDE Settings")]
          [DisplayName("Set Visual Studio IDE Path")]
          [Description("Visual Studio IDE Path")]
@@ -90,7 +94,7 @@ namespace TFSExp.ExtendedMerge
            //
 
             cmdidDestroy = cmdidExpMerge = cmdidExportWord = cmdidGetPreview = true;
-            cmdidHistLinkWI = cmdidHistModifyTime = cmdidQueryLinkTypes = true;
+            cmdidHistLinkWI = cmdidHistModifyTime = cmdidQueryLinkTypes = cmdidCopyComment = true;
         }
     }
 }

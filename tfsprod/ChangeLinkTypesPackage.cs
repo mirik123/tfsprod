@@ -28,13 +28,18 @@ namespace TFSExt.ChangeLinkTypes
                 foreach (int i in (doc2 as IResultsDocument).SelectedItemIds)
                 {
                     var wi = Utilities.wistore.GetWorkItem(i);
+                    if (wi.ExternalLinkCount == 0) continue;
+
+                    wi.Open();
                     foreach (var link in wi.Links.OfType<ExternalLink>())
                     {
                         var ch = Utilities.vcsrv.ArtifactProvider.GetChangeset(new Uri(link.LinkedArtifactUri));
-                        link.Comment = ch.Comment;
-                        wi.Save();
+                        link.Comment = ch.Comment;                        
                     }
+                    wi.Save();
                 }
+
+                MessageBox.Show("Changesets added sucessfully.", Utilities.AppTitle);
             }
             catch (Exception ex)
             {
@@ -62,6 +67,7 @@ namespace TFSExt.ChangeLinkTypes
                 return;
             }
 
+            var isFound = false;
             foreach (var wi in workitems)
             {
                 var oldlinks = wi.Links
@@ -69,16 +75,22 @@ namespace TFSExt.ChangeLinkTypes
                     .Select(x => Utilities.vcsrv.ArtifactProvider.GetChangeset(new Uri(x.LinkedArtifactUri)).ChangesetId)
                     .ToList();
 
-                foreach (Changeset ch in changesets.Where(x => !oldlinks.Contains(x.ChangesetId)))
+                var chs = changesets.Where(x => !oldlinks.Contains(x.ChangesetId));
+                if (chs.Count() == 0) continue;
+
+                wi.Open();
+                foreach (Changeset ch in chs)
                 {
+                    isFound = true;
                     wi.Links.Add(new ExternalLink(chlinktype, ch.ArtifactUri.AbsoluteUri) 
                     { 
                         Comment = ch.Comment
                     });
                 }
+                wi.Save();
             }
 
-            MessageBox.Show("Links added sucessfully.", Utilities.AppTitle);
+            MessageBox.Show(isFound ? "Links added sucessfully." : "No links are found.", Utilities.AppTitle);
         }
         
         public static void QueryLinkTypesCallback(object sender, EventArgs e)
