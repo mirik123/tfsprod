@@ -20,7 +20,7 @@ namespace tfsprod
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    [ProvideLoadKey("Standard", "1.0", "TFS Productivity Tools - Change Link Types", "Mark Babayev (Experis)", 114)]
+    //[ProvideLoadKey("Standard", "2.0.1", "TFS Productivity Tools", "Mark Babayev", 114)]
     [ProvideToolWindow(typeof(MergeWIPane), MultiInstances = false, Style = VsDockStyle.Tabbed, PositionX = 0, PositionY = 0, Width = 900, Height = 750, Transient = false,
         Orientation = ToolWindowOrientation.Left, Window = "9DDABE98-1D02-11D3-89A1-00C04F688DDE")]
     [ProvideOptionPage(typeof(OptionPageGrid), "TFS Productivity Tools", "General", 0, 0, true)]
