@@ -7,14 +7,15 @@ The TFS Productivity Tools project was designed to provide TFS administrators wi
 For running these extensions the installation of Visual Studio Professional is required.<br/>
 The extensions was tested with Visual Studio 2012 only.
 
-|Tool Description|Runs from Visual Studio Window|
-|----------------|------------------------------|
-|Modify Work Item link types. |Team Explorer| 
-|Completely destroy Work Items. |Query Results| 
-|Export Work Items to Microsoft Word document. |Team Explorer| 
-|Provide workaround for several merge features not implemented by TFS: <br/>1.TFS merge leads to bulk check-in operation that puts files from all previous changesets into one big merge changeset. <br/>2.TFS allows only for consecutive changesets being cherry-peeked by merge operation. <br/>3.TFS doesn’t allow choosing changesets for cherry-peek merge by selecting work items. <br/>4.TFS merge dialog doesn’t have “force” and “baseless” options. |Source Control Explorer, Query Results|
-|Emulate commandline task and write outputs to Output window: <br/> tf.exe get /recursive /preview "itemspec" |Source Control Explorer|
-|1. Update modification time for checked-out files to their latest check-in time.<br/>2. Directly modify changeset's check-in time in TFS database. |Source Control Explorer, History|
+|Tool description|Button name|Runs from Window|
+|----------------|------------|------------------|
+|Modify Work Item link types. |Change Work Item link types|Team Explorer| 
+|Completely destroy Work Items. |Destroy Work Items|Query Results| 
+|Export Work Items to Microsoft Word document. |Export to Microsoft Word|Team Explorer| 
+|Provide workaround for several merge features not implemented by TFS: <br/>1.TFS merge leads to bulk check-in operation that puts files from all previous changesets into one big merge changeset. <br/>2.TFS allows only for consecutive changesets being cherry-peeked by merge operation. <br/>3.TFS doesn’t allow choosing changesets for cherry-peek merge by selecting work items. <br/>4.TFS merge dialog doesn’t have “force” and “baseless” options. |Merge Work Items,<br/>Merge Changesets|Source Control Explorer, Query Results|
+|Emulate commandline task and write outputs to Output window: <br/> tf.exe get /recursive /preview "itemspec"|Emulate Get-Preview|Source Control Explorer|
+|1. Update modification time for checked-out files to their latest check-in time.<br/>2. Directly modify changeset's check-in time in TFS database. |Update Modification Time, Update Changeset Time|Source Control Explorer, History|
+|1. Link changesets to work items (many-to-many)<br/>2. Copy changeset comment to link comment|Link Changesets to Work Item, Copy Changeset comments|History, Query Results|
 
 ### Installation
 
