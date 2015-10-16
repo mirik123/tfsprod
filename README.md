@@ -104,7 +104,7 @@ Extension runs all actions from toolbar buttons (some of them are duplicated on 
 |Resolve |Show merge conflicts. |
 |Changeset details |Show changeset details. |
 |Work Item details |Show Work Item details. |
-|Navigate to Server Path |Navigate to server path in Source Control Explorer. |
+|Navigate&nbsp;to&nbsp;Server&nbsp;Path|Navigate to server path in Source Control Explorer. |
 |Edit Server Path |Edit server paths (one or multiple). |
 |Copy to Clipboard |Copy selected changeset details to clipboard. |
 |Mark All Items |Check all grid items. |
@@ -149,6 +149,7 @@ The ExtendedMerge uses a number of internal Microsoft classes. It can possibly l
 |--------|-------|
 |Show browse server folder dialog |*Microsoft.TeamFoundation.Build.Controls.VersionControlHelper.ShowServerFolderBrowser*| 
 |Show merge progress dialog |*Microsoft.TeamFoundation.VersionControl.Controls.ProgressMerge*|
-|Show resolve conflicts dialog |*Microsoft.TeamFoundation.Client.Arguments<br/>Microsoft.TeamFoundation.VersionControl.CommandLine.CommandResolve*|
+|Show resolve conflicts dialog |*Microsoft.TeamFoundation.VersionControl.Controls.DialogResolveConflicts*|
+|Show WorkItem picker dialog |*Microsoft.TeamFoundation.WorkItemTracking.Controls.WorkItemPickerDialog*|
 <br/>
 Extension packages used icons from GNOME project:  http://art.gnome.org/themes/icon 
