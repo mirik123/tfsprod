@@ -112,6 +112,11 @@ namespace tfsprod
                 menuCommandID = new CommandID(GuidList.guidtfsprodCmdSet, (int)PkgCmdIDList.cmdidCopyComment);
                 menuItem = new OleMenuCommand(TFSExt.ChangeLinkTypes.ChangeLinkTypesPackage.CopyChangesetComments, menuCommandID);
                 mcs.AddCommand(menuItem);
+                menuItem.BeforeQueryStatus += menuItem_BeforeQueryStatus;
+
+                menuCommandID = new CommandID(GuidList.guidtfsprodCmdSet, (int)PkgCmdIDList.MyHistRevisions);
+                menuItem = new OleMenuCommand(TFSExt.ShowRevHist.ShowRevHistPackage.ShowRevHistCallback, menuCommandID);
+                mcs.AddCommand(menuItem);
                 menuItem.BeforeQueryStatus += menuItem_BeforeQueryStatus;   
             }
         }
@@ -133,6 +138,7 @@ namespace tfsprod
                 case (int)PkgCmdIDList.MySCHistModifyTimeID: cmdName = "cmdidHistModifyTime"; break;
                 case (int)PkgCmdIDList.MyHistLinkWI: cmdName = "cmdidHistLinkWI"; break;
                 case (int)PkgCmdIDList.cmdidCopyComment: cmdName = "cmdidCopyComment"; break;
+                case (int)PkgCmdIDList.MyHistRevisions: cmdName = "cmdidHistRevisions"; break;
                 default: return;
             }
 

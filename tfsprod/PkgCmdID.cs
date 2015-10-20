@@ -15,6 +15,7 @@ namespace tfsprod
         public const uint MySCHistModifyTimeID = 0x5016;
         public const uint MyHistModifyTimeID = 0x5017;
         public const uint MyHistLinkWI = 0x5104;
-        public const uint cmdidCopyComment = 0x5105;       
+        public const uint cmdidCopyComment = 0x5105;
+        public const uint MyHistRevisions = 0x5107;    
     };
 }

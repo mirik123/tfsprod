@@ -120,6 +120,15 @@
           <ButtonText>Link Changesets to Work Item</ButtonText>
         </Strings>
       </Button>
+    
+    <Button guid="guidtfsprodCmdSet" id="MyHistRevisions" priority="0x0200" type="Button">
+        <Parent guid="guidtfsprodCmdSet" id="CustomSourceControlExp" />
+        <Icon guid="guidImages4" id="bmpQueryLinkTypes" />
+        <Strings>
+          <CommandName>MyHistRevisions</CommandName>
+          <ButtonText>Show Revisions history</ButtonText>
+        </Strings>
+      </Button>
     </Buttons>
    
     <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
@@ -190,6 +199,7 @@
       <IDSymbol name="MyHistModifyTimeID" value="0x5017" />
       <IDSymbol name="MyHistLinkWI" value="0x5104" />
       <IDSymbol name="cmdidCopyComment" value="0x5105" />  
+      <IDSymbol name="MyHistRevisions" value="0x5107" /> 
     </GuidSymbol>
   </Symbols>
 </CommandTable>

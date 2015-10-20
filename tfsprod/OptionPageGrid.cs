@@ -60,6 +60,11 @@ namespace TFSExp.ExtendedMerge
         [DisplayName("Copy Changeset comments")]
         public bool cmdidCopyComment { get; set; }
 
+        [Category("Enable Extensions")]
+        [DisplayName("Show Revisions history")]
+        public bool cmdidHistRevisions { get; set; }
+        
+
         /**[Category("IDE Settings")]
          [DisplayName("Set Visual Studio IDE Path")]
          [Description("Visual Studio IDE Path")]
