@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using TFSExp.ExtendedMerge;
+using TFSExt.ShowRevHist;
 
 namespace tfsprod
 {
@@ -21,8 +22,10 @@ namespace tfsprod
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     //[ProvideLoadKey("Standard", "2.0.1", "TFS Productivity Tools", "Mark Babayev", 114)]
-    [ProvideToolWindow(typeof(MergeWIPane), MultiInstances = false, Style = VsDockStyle.Tabbed, PositionX = 0, PositionY = 0, Width = 900, Height = 750, Transient = false,
-        Orientation = ToolWindowOrientation.Left, Window = "9DDABE98-1D02-11D3-89A1-00C04F688DDE")]
+    [ProvideToolWindow(typeof(MergeWIPane), MultiInstances = false, Style = VsDockStyle.Tabbed, PositionX = 0, PositionY = 0, Width = 900, Height = 750, Transient = true,
+        Orientation = ToolWindowOrientation.Left, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
+    [ProvideToolWindow(typeof(RevisionHistoryPane), MultiInstances = false, Style = VsDockStyle.Tabbed, PositionX = 0, PositionY = 0, Width = 900, Height = 750, Transient = true,
+        Orientation = ToolWindowOrientation.Left, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
     [ProvideOptionPage(typeof(OptionPageGrid), "TFS Productivity Tools", "General", 0, 0, true)]
     //[ProvideAutoLoad("f1536ef8-92ec-443c-9ed7-fdadf150da82")]
     [Guid(GuidList.guidtfsprodPkgString)]
@@ -169,11 +172,12 @@ namespace tfsprod
             var vsTeamCtxMan = GetService(typeof(ITeamFoundationContextManager)) as ITeamFoundationContextManager;
             var teamExplorer = GetService(typeof(ITeamExplorer)) as ITeamExplorer;
 
-            MergeWIPane pane = (MergeWIPane)this.FindToolWindow(typeof(MergeWIPane), 0, true);
+            MergeWIPane paneMerge = (MergeWIPane)this.FindToolWindow(typeof(MergeWIPane), 0, true);
+            RevisionHistoryPane paneRevhist = (RevisionHistoryPane)this.FindToolWindow(typeof(RevisionHistoryPane), 0, true);
 
             Utilities.dialogFactory = dialogFactory;
             Utilities.outputWindow = outputWindow;
-            Utilities.AppTitle = Resources.ResourceManager.GetString("AppTitle");
+            Utilities.AppTitle = Resources.AppTitle;
             Utilities.wistore = wistore;
             Utilities.teamExplorer = teamExplorer;
             Utilities.vsTeamCtxMan = vsTeamCtxMan;
@@ -183,7 +187,8 @@ namespace tfsprod
             Utilities.vcext = vcext;
             Utilities.vcsrv = vcsrv;
             Utilities.dataconnfc = dataconnfc;
-            Utilities.pane = pane;
+            Utilities.paneMerge = paneMerge;
+            Utilities.paneRevhist = paneRevhist;
         }
     }
 }

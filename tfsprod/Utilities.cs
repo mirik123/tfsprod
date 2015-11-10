@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using TFSExp.ExtendedMerge;
+using TFSExt.ShowRevHist;
 
 namespace tfsprod
 {
@@ -34,7 +35,8 @@ namespace tfsprod
         static internal VersionControlServer vcsrv;
         static internal IVsDataConnectionDialogFactory dataconnfc;
         static internal ITeamFoundationContextManager vsTeamCtxMan;
-        static internal MergeWIPane pane;
+        static internal MergeWIPane paneMerge;
+        static internal RevisionHistoryPane paneRevhist;
 
         /// <summary>
         /// Outputs the command string.

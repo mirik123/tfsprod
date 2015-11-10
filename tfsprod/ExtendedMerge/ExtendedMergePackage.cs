@@ -45,20 +45,20 @@ namespace TFSExp.ExtendedMerge
                     return;
                 }
 
-                if (Utilities.pane == null)
+                if (Utilities.paneMerge == null)
                 {
                     Cursor.Current = origCursor;
                     MessageBox.Show("Failed to initialize " + Utilities.AppTitle + ": Pane was null.", Utilities.AppTitle);
                     return;
                 }
 
-                var mfrm = Utilities.pane.control;
+                var mfrm = Utilities.paneMerge.control;
                 mfrm.SuppressEvents = true;
                 mfrm.defServerName = folderPath;
                 mfrm.Initialize();
                 mfrm.ClearGrids();
 
-                IVsWindowFrame frame = Utilities.pane.Frame as IVsWindowFrame;
+                IVsWindowFrame frame = Utilities.paneMerge.Frame as IVsWindowFrame;
                 if (frame == null)
                 {
                     Cursor.Current = origCursor;
@@ -145,20 +145,20 @@ namespace TFSExp.ExtendedMerge
             try
             {
 
-                if (Utilities.pane == null)
+                if (Utilities.paneMerge == null)
                 {
                     Cursor.Current = origCursor;
                     MessageBox.Show("Failed to initialize " + Utilities.AppTitle + ": Pane was null.", Utilities.AppTitle);
                     return;
                 }
 
-                var mfrm = Utilities.pane.control;
+                var mfrm = Utilities.paneMerge.control;
                 mfrm.SuppressEvents = true;
                 mfrm.defServerName = "$/" + Utilities.vsTeamCtxMan.CurrentContext.TeamProjectName;
                 mfrm.Initialize();
                 mfrm.ClearGrids();
 
-                IVsWindowFrame frame = Utilities.pane.Frame as IVsWindowFrame;
+                IVsWindowFrame frame = Utilities.paneMerge.Frame as IVsWindowFrame;
                 if (frame == null)
                 {
                     Cursor.Current = origCursor;

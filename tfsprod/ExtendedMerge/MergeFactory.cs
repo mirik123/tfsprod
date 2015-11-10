@@ -195,7 +195,7 @@ namespace TFSExp.ExtendedMerge
             int idx = 0;
             bool bcanceled = false;
             int icanceled;
-            IVsThreadedWaitDialog2 dlg = Utilities.CreateThreadedWaitDialog("Merging changesets", "Stating changesets merge...", "status", 100);
+            var dlg = Utilities.CreateThreadedWaitDialog("Merging changesets", "Stating changesets merge...", "status", 100);
             ErrorHandler.ThrowOnFailure(dlg.UpdateProgress("Merging changesets", "Stating changesets merge...", "status", idx++, 100, false, out bcanceled));
             if (bcanceled) return;
 

@@ -33,6 +33,10 @@ namespace TFSExp.ExtendedMerge
 
             // Creating the user control that will be displayed in the window
             _control = new MergeWIControl();
+
+            this.Caption = Utilities.AppTitle;
+            this.BitmapResourceID = 700;
+            this.BitmapIndex = 1;
         }
 
         /// <summary>
@@ -53,9 +57,7 @@ namespace TFSExp.ExtendedMerge
         {
             base.OnToolWindowCreated();
 
-            this.Caption = Utilities.AppTitle;
-            this.BitmapResourceID = 700;
-            this.BitmapIndex = 1;
+            
             ((IVsWindowFrame)this.Frame).SetProperty((int)__VSFPROPID.VSFPROPID_BitmapResource, 700);
             ((IVsWindowFrame)this.Frame).SetProperty((int)__VSFPROPID.VSFPROPID_BitmapIndex, 1);
             ((IVsWindowFrame)this.Frame).SetProperty((int)__VSFPROPID.VSFPROPID_FrameMode, VSFRAMEMODE.VSFM_Dock);
@@ -67,6 +69,11 @@ namespace TFSExp.ExtendedMerge
             //{
             //MessageBox.Show("Failed to dock Work Item Merger under Visual Studio IDE window.", "Work Item Merger");
             //}
+
+            // Register to the window events
+            //handle window pane events - WindowStatus class should implement IVsWindowFrameNotify3
+            //WindowStatus windowFrameEventsHandler = new WindowStatus();
+            //ErrorHandler.ThrowOnFailure(((IVsWindowFrame)this.Frame).SetProperty((int)__VSFPROPID.VSFPROPID_ViewHelper, (IVsWindowFrameNotify3)windowFrameEventsHandler));
         }
 
         /// <summary>

@@ -94,6 +94,8 @@
     <Reference Include="Microsoft.VisualStudio.Shell.11.0" />
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0" />
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.11.0" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -101,7 +103,9 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="EnvDTE">
@@ -160,27 +164,28 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangeLinkTypesPackage.cs" />
-    <Compile Include="DestroyWorkItemsPackage.cs" />
-    <Compile Include="EditLinkTypeDialog.cs">
+    <Compile Include="RevisionHistory\RevHistUtilities.cs" />
+    <Compile Include="WITools\ChangeLinkTypesPackage.cs" />
+    <Compile Include="WITools\DestroyWorkItemsPackage.cs" />
+    <Compile Include="WITools\EditLinkTypeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditLinkTypeDialog.Designer.cs">
+    <Compile Include="WITools\EditLinkTypeDialog.Designer.cs">
       <DependentUpon>EditLinkTypeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="ExportWordDocPackage.cs" />
-    <Compile Include="ExtendedMergePackage.cs" />
+    <Compile Include="ExtendedMerge\ExtendedMergePackage.cs" />
     <Compile Include="GetPreviewPackage.cs" />
     <Compile Include="Guids.cs" />
-    <Compile Include="MergeFactory.cs" />
-    <Compile Include="MergeWIControl.cs">
+    <Compile Include="ExtendedMerge\MergeFactory.cs" />
+    <Compile Include="ExtendedMerge\MergeWIControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MergeWIControl.Designer.cs">
+    <Compile Include="ExtendedMerge\MergeWIControl.Designer.cs">
       <DependentUpon>MergeWIControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MergeWIPane.cs" />
-    <Compile Include="ModifyCheckinDatePackage.cs" />
+    <Compile Include="ExtendedMerge\MergeWIPane.cs" />
+    <Compile Include="WITools\ModifyCheckinDatePackage.cs" />
     <Compile Include="OptionPageGrid.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -190,17 +195,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="ShowRevHistPackage.cs" />
+    <Compile Include="RevisionHistory\ShowRevHistPackage.cs" />
     <Compile Include="tfsprodPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PkgCmdID.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="RevisionHistory\WpfRevisionHistoryControl.xaml.cs">
+      <DependentUpon>WpfRevisionHistoryControl.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EditLinkTypeDialog.resx">
+    <EmbeddedResource Include="WITools\EditLinkTypeDialog.resx">
       <DependentUpon>EditLinkTypeDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MergeWIControl.resx">
+    <EmbeddedResource Include="ExtendedMerge\MergeWIControl.resx">
       <DependentUpon>MergeWIControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources.resx">
@@ -262,6 +270,13 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="RevisionHistory\WpfRevisionHistoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>
