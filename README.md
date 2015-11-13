@@ -1,21 +1,22 @@
 # Welcome to the TFS Productivity Tools project
 
-This package was written as a part of a job in [Experis](http://www.experis.co.il).
-
 The TFS Productivity Tools project was designed to provide TFS administrators with helper extensions for Source Control or Work Item Tracking tasks.
 
 For running these extensions the installation of Visual Studio Professional is required.<br/>
 The extensions was tested with Visual Studio 2012 only.
 
-|Tool description|Button name|Runs from Window|
+|Button name|Runs from Window|Tool description|
 |----------------|------------|------------------|
-|Modify Work Item link types. |Change Work Item link types|Team Explorer| 
-|Completely destroy Work Items. |Destroy Work Items|Query Results| 
-|Export Work Items to Microsoft Word document. |Export to Microsoft Word|Team Explorer| 
-|Provide workaround for several merge features not implemented by TFS: <br/>1.TFS merge leads to bulk check-in operation that puts files from all previous changesets into one big merge changeset. <br/>2.TFS allows only for consecutive changesets being cherry-peeked by merge operation. <br/>3.TFS doesn’t allow choosing changesets for cherry-peek merge by selecting work items. <br/>4.TFS merge dialog doesn’t have “force” and “baseless” options. |Merge Work Items,<br/>Merge Changesets|Source Control Explorer, Query Results|
-|Emulate commandline task and write outputs to Output window: <br/> tf.exe get /recursive /preview "itemspec"|Emulate Get-Preview|Source Control Explorer|
-|1. Update modification time for checked-out files to their latest check-in time.<br/>2. Directly modify changeset's check-in time in TFS database. |Update Modification Time, Update Changeset Time|Source Control Explorer, History|
-|1. Link changesets to work items (many-to-many)<br/>2. Copy changeset comment to link comment|Link Changesets to Work Item, Copy Changeset comments|History, Query Results|
+|\* Change Work Item link types|Team Explorer|Modify Work Item link types. |
+|\* Destroy Work Items|Query Results|Completely destroy Work Items. |
+|\* Export to Microsoft Word|Team Explorer|Export Work Items to Microsoft Word document. |
+|\* Merge Work Items,<br/>Merge Changesets|Source Control Explorer, Query Results|Provide workaround for several merge features not implemented by TFS: <br/>1.TFS merge leads to bulk check-in operation that puts files from all previous changesets into one big merge changeset. <br/>2.TFS allows only for consecutive changesets being cherry-peeked by merge operation. <br/>3.TFS doesn’t allow choosing changesets for cherry-peek merge by selecting work items. <br/>4.TFS merge dialog doesn’t have “force” and “baseless” options. |
+|\* Emulate Get-Preview|Source Control Explorer|Emulate commandline task and write outputs to Output window: <br/> tf.exe get /recursive /preview "itemspec"|
+|\* Update Modification Time, Update Changeset Time|Source Control Explorer, History|1. Update modification time for checked-out files to their latest check-in time.<br/>2. Directly modify changeset's check-in time in TFS database. |
+|Link Changesets to Work Item, Copy Changeset comments|History, Query Results|1. Link changesets to work items (many-to-many)<br/>2. Copy changeset comment to link comment|
+|Show Revision history|Source Control Explorer|Show WPF graph tree of branches with mergable changesets|
+
+\* These features were written as a part of a job in [Experis](http://www.experis.co.il).
 
 ### Installation
 
