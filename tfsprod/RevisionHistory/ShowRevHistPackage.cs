@@ -36,13 +36,14 @@ namespace TFSExt.ShowRevHist
                 return;
             }
 
-            (Utilities.paneRevhist.Content as WpfRevisionHistoryControl).btreeview.ItemsSource = ShowRevHistPackage.BuildBTree().children;
+            var btree = ShowRevHistPackage.BuildBTree(new ItemIdentifier(srvitems.First()));
+            (Utilities.paneRevhist.Content as WpfRevisionHistoryControl).btreeview.ItemsSource = btree.children;
 
             // Bring the tool window to the front and give it focus
             ErrorHandler.ThrowOnFailure(frame.Show());
         }
 
-        static BTreeItem BuildBTree()
+        static BTreeItem BuildBTree(ItemIdentifier root)
         {
             var origCursor = Cursor.Current;
             Cursor.Current = Cursors.WaitCursor;
@@ -60,18 +61,15 @@ namespace TFSExt.ShowRevHist
                 var itm = new BTreeItem
                 {
                     Path = item.Properties.RootItem.Item,
-                    DateCreated = item.DateCreated,
+                    CreationDate = item.DateCreated,
                     parent = item.Properties.ParentBranch == null ? null : item.Properties.ParentBranch.Item,
-                    RelatedBranches = item.RelatedBranches.Select(x => x.Item).ToDictionary(x => x, y => (Changeset[])null)
+                    version = (item.Properties.RootItem.Version as ChangesetVersionSpec).ChangesetId,
+                    RelatedBranches = Utilities.vcsrv
+                        .QueryMergeRelationships(item.Properties.RootItem.Item)
+                        .ToDictionary(x => x.Item, y => Utilities.vcsrv
+                                .GetMergeCandidates(item.Properties.RootItem.Item, y.Item, RecursionType.Full)
+                                .Select(x => x.Changeset).ToArray())
                 };
-
-                var itemSpec = new ItemSpec(itm.Path, RecursionType.Full);
-
-                foreach (var key in itm.RelatedBranches.Keys)
-                {
-                    var cands = Utilities.vcsrv.GetMergeCandidates(itemSpec, key, MergeOptionsEx.NoMerge);
-                    itm.RelatedBranches[key] = cands.Select(x => x.Changeset).ToArray();
-                }
 
                 if (itm.parent == null)
                     btree.children.Add(itm);
@@ -84,7 +82,7 @@ namespace TFSExt.ShowRevHist
                         btree.children.Add(itm);
                 }
 
-                dlg.UpdateProgress("Collecting information about changesets", "Processing changeset: " + "ch.ChangesetId", "status", idx++, 100, false, out bcanceled);
+                dlg.UpdateProgress("Collecting information about changesets", "Processing branch: " + itm.Path, "status", idx++, 100, false, out bcanceled);
                 if (bcanceled) break;
             }
 
