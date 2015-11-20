@@ -36,60 +36,90 @@ namespace TFSExt.ShowRevHist
                 return;
             }
 
-            var btree = ShowRevHistPackage.BuildBTree(new ItemIdentifier(srvitems.First()));
-            (Utilities.paneRevhist.Content as WpfRevisionHistoryControl).btreeview.ItemsSource = btree.children;
+            var data = ShowRevHistPackage.BuildBTree(new ItemIdentifier(srvitems.First()));
+            (Utilities.paneRevhist.Content as WpfRevisionHistoryControl).data = data;
 
             // Bring the tool window to the front and give it focus
             ErrorHandler.ThrowOnFailure(frame.Show());
         }
 
-        static BTreeItem BuildBTree(ItemIdentifier root)
+        static dynamic BuildBTree(ItemIdentifier root)
         {
-            var origCursor = Cursor.Current;
-            Cursor.Current = Cursors.WaitCursor;
+            Cursor origCursor = Cursor.Current;            
             IVsThreadedWaitDialog2 dlg = null;
             bool bcanceled;
-            int icanceled;
-            int idx = 0;
+            int icanceled, idx = 0;
+            DateTime minDate = DateTime.MaxValue, maxDate = DateTime.MinValue;
             
+            Cursor.Current = Cursors.WaitCursor;
+
             dlg = Utilities.CreateThreadedWaitDialog("Collecting information about changesets", "Starting to process changesets...", "status", 100);
             dlg.UpdateProgress("Collecting information about changesets", "Starting to process changesets...", "status", 0, 100, true, out bcanceled);
 
-            var btree = new BTreeItem();
+            var branches = new List<BTreeItem>();
             foreach (var item in Utilities.vcsrv.QueryRootBranchObjects(RecursionType.Full))
             {
                 var itm = new BTreeItem
                 {
                     Path = item.Properties.RootItem.Item,
                     CreationDate = item.DateCreated,
-                    parent = item.Properties.ParentBranch == null ? null : item.Properties.ParentBranch.Item,
+                    parentPath = item.Properties.ParentBranch == null ? null : item.Properties.ParentBranch.Item,
                     version = (item.Properties.RootItem.Version as ChangesetVersionSpec).ChangesetId,
                     RelatedBranches = Utilities.vcsrv
                         .QueryMergeRelationships(item.Properties.RootItem.Item)
-                        .ToDictionary(x => x.Item, y => Utilities.vcsrv
-                                .GetMergeCandidates(item.Properties.RootItem.Item, y.Item, RecursionType.Full)
-                                .Select(x => x.Changeset).ToArray())
+                        .Select(x => new Tuple<BTreeItem, Changeset[]>(new BTreeItem { Path = x.Item }, Utilities.vcsrv
+                                .GetMergeCandidates(item.Properties.RootItem.Item, x.Item, RecursionType.Full)
+                                .Select(z => z.Changeset).ToArray()))
+                        .ToList()
                 };
 
-                if (itm.parent == null)
-                    btree.children.Add(itm);
-                else
-                {
-                    var newparent = ShowRevHistPackage.TreeDescendants(btree).FirstOrDefault(x => x.Path == itm.parent);
-                    if (newparent != null)
-                        newparent.children.Add(itm);
-                    else
-                        btree.children.Add(itm);
-                }
+                if (itm.CreationDate < minDate) minDate = itm.CreationDate;
+                if (itm.CreationDate > maxDate) maxDate = itm.CreationDate;
+                branches.Add(itm);
 
                 dlg.UpdateProgress("Collecting information about changesets", "Processing branch: " + itm.Path, "status", idx++, 100, false, out bcanceled);
-                if (bcanceled) break;
+                if (bcanceled) break;                
             }
+                
+            var broot = new BTreeItem();
+            foreach(var itm in branches)
+            {
+                if (itm.parentPath == null)
+                {
+                    broot.children.Add(itm);
+                    itm.parent = broot;
+                }
+                else
+                {
+                    itm.parent = branches.FirstOrDefault(x => x.Path == itm.parentPath);
+                    if (itm.parent != null)
+                        itm.parent.children.Add(itm);
+                    else
+                        broot.children.Add(itm);
+                }
+
+                itm.RelatedBranches = itm.RelatedBranches
+                    .Select(x => new Tuple<BTreeItem, Changeset[]>(branches.FirstOrDefault(z => z.Path == x.Item1.Path), x.Item2))
+                    .ToList();
+
+                itm.relY = (int)itm.CreationDate.Subtract(minDate).TotalDays;
+
+                foreach (var ch in itm.RelatedBranches.SelectMany(x => x.Item2))
+                    if (ch.CreationDate > maxDate) maxDate = ch.CreationDate;
+            }
+
+            idx = 0;
+            var res = ShowRevHistPackage.TreeDescendants2(broot, ref idx).OrderBy(x => x.relX).ToList();
+            res.ForEach(x => Utilities.OutputCommandString(x.relX + " " + (x.parentPath ?? "") + "=" + x.DisplayText));
 
             Cursor.Current = origCursor;
             dlg.EndWaitDialog(out icanceled);
 
-            return btree;
+            return new {
+                ylines = (int)(maxDate.Subtract(minDate).TotalDays * 1.1) + 1,
+                xlines = idx+1,
+                branches = res
+            };
         }
 
         static IEnumerable<BTreeItem> TreeDescendants(BTreeItem root)
@@ -102,6 +132,20 @@ namespace TFSExt.ShowRevHist
                     yield return child;
                 }
             }
+        }
+
+        static IEnumerable<BTreeItem> TreeDescendants2(BTreeItem root, ref int idx)
+        {
+            var locbtree = new List<BTreeItem>();
+            root.relX = idx++;
+
+            locbtree.Add(root);
+            foreach (var node in root.children.OrderByDescending(x => x.CreationDate))
+            {
+                locbtree.AddRange(ShowRevHistPackage.TreeDescendants2(node, ref idx));
+            }
+
+            return locbtree;
         }
         
         static void ShowRevHistCallback_obsolete(object sender, EventArgs e)

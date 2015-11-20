@@ -8,57 +8,7 @@
              x:Class="tfsprod.WpfRevisionHistoryControl"          
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TreeView x:Name="btreeview" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" 
-                  ItemsSource="{Binding ShowRevHist:BTreeItem}">
-            <TreeView.Resources>
-                <tfsprod:TreeViewLineConverter x:Key="TreeViewLineConverter"/>
-                <HierarchicalDataTemplate DataType="{x:Type ShowRevHist:BTreeItem}" ItemsSource="{Binding Items}">
-                    <TextBlock Text="{Binding Path=DisplayText}" />
-                </HierarchicalDataTemplate>
-                <DataTemplate DataType="{x:Type ShowRevHist:BTreeChangeset}" >
-                    <TextBlock Text="{Binding Path=DisplayText}" />
-                </DataTemplate>
-            </TreeView.Resources>
-            <TreeView.ItemContainerStyle>
-                <Style TargetType="{x:Type TreeViewItem}">
-                    <Setter Property="IsExpanded" Value="True" />
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type TreeViewItem}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition MinWidth="19" Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-
-                                    <Rectangle x:Name="HorLn" Margin="9,1,0,0" Height="1" Stroke="Blue" StrokeDashCap="Square" StrokeDashArray="0,2" StrokeDashOffset="1" SnapsToDevicePixels="True"/>
-                                    <Rectangle x:Name="VerLn" Width="1"  Stroke="Blue" StrokeDashCap="Square" StrokeDashArray="0,2" Margin="0,0,1,0" Grid.RowSpan="2" SnapsToDevicePixels="true" Fill="White"/>
-                                    <Border Name="Bd" Grid.Column="1" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
-                                        <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" MinWidth="20"/>
-                                    </Border>
-                                    <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <!-- This trigger changes the connecting lines if the item is the last in the list -->
-                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource TreeViewLineConverter}}" Value="true">
-                                        <Setter TargetName="VerLn" Property="Height" Value="9"/>
-                                        <Setter TargetName="VerLn" Property="VerticalAlignment" Value="Top"/>
-                                    </DataTrigger>
-                                    <Trigger Property="IsExpanded" Value="false">
-                                        <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TreeView.ItemContainerStyle>
-        </TreeView>
-    </Grid>
+    <Border x:Name="border" BorderBrush="Black" CornerRadius="1" BorderThickness="0.1" ClipToBounds="True">
+        <Canvas x:Name="canvas" Background="White" Margin="0" ClipToBounds="True" />
+    </Border>
 </UserControl>
