@@ -19,6 +19,9 @@ namespace TFSExt.ChangeLinkTypes
         public static void CopyChangesetComments(object sender, EventArgs e)
         {
             object _lockToken2 = new object();
+
+            if (DialogResult.No == MessageBox.Show("Are you sure you want to copy the Changeset comments?", Utilities.AppTitle, MessageBoxButtons.YesNo))
+                return;
            
             IWorkItemTrackingDocument doc2 = Utilities.docsrv2.FindDocument(Utilities.dte.ActiveDocument.FullName, _lockToken2);
             if (doc2 == null) return;
@@ -52,6 +55,9 @@ namespace TFSExt.ChangeLinkTypes
         
         public static void LinkChangesetsToWICallback(object sender, EventArgs e)
         {
+            if (DialogResult.No == MessageBox.Show("Are you sure you want to link the Changesets to the WhorkItems?", Utilities.AppTitle, MessageBoxButtons.YesNo))
+                return;
+            
             var chlinktype = Utilities.wistore.RegisteredLinkTypes["Fixed in Changeset"];
             var changesets = Utilities.vcext.History.ActiveWindow.SelectedChangesets.Select(x => Utilities.vcsrv.GetChangeset(x.ChangesetId));
             if (changesets == null || changesets.Count() == 0)

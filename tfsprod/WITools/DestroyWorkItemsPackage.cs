@@ -8,8 +8,11 @@ namespace TFSExt.DestroyWorkItems
 {
     public static class DestroyWorkItemsPackage
     {
-        public static void MenuItemCallback(object sender, EventArgs e)
+        public static void DestroyWICallback(object sender, EventArgs e)
         {
+            if (DialogResult.No == MessageBox.Show("Are you sure you want to destroy the WorkItems?", Utilities.AppTitle, MessageBoxButtons.YesNo))
+                return;
+            
             var origCursor = Cursor.Current;
             Cursor.Current = Cursors.WaitCursor;
 

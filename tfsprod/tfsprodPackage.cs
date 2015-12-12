@@ -21,7 +21,7 @@ namespace tfsprod
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    //[ProvideLoadKey("Standard", "2.0.1", "TFS Productivity Tools", "Mark Babayev", 114)]
+    //[ProvideLoadKey("Standard", "2.0.3", "TFS Productivity Tools", "Mark Babayev", 114)]
     [ProvideToolWindow(typeof(MergeWIPane), MultiInstances = false, Style = VsDockStyle.Tabbed, PositionX = 0, PositionY = 0, Width = 900, Height = 750, Transient = true,
         Orientation = ToolWindowOrientation.Left, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
     [ProvideToolWindow(typeof(RevisionHistoryPane), MultiInstances = false, Style = VsDockStyle.Tabbed, PositionX = 0, PositionY = 0, Width = 900, Height = 750, Transient = true,
@@ -68,7 +68,7 @@ namespace tfsprod
                 menuItem.BeforeQueryStatus += menuItem_BeforeQueryStatus;
 
                 menuCommandID = new CommandID(GuidList.guidtfsprodCmdSet, (int)PkgCmdIDList.cmdidDestroyWI);
-                menuItem = new OleMenuCommand(TFSExt.DestroyWorkItems.DestroyWorkItemsPackage.MenuItemCallback, menuCommandID);
+                menuItem = new OleMenuCommand(TFSExt.DestroyWorkItems.DestroyWorkItemsPackage.DestroyWICallback, menuCommandID);
                 mcs.AddCommand(menuItem);
                 menuItem.BeforeQueryStatus += menuItem_BeforeQueryStatus;
 

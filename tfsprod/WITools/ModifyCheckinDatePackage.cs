@@ -18,6 +18,9 @@ namespace TFSExt.ModifyCheckinDate
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         public static void MySCHistModifyTimeCallback(object sender, EventArgs e)
         {
+            if (DialogResult.No == MessageBox.Show("Are you sure you want to modify the Changeset timestamp?", Utilities.AppTitle, MessageBoxButtons.YesNo))
+                return;
+            
             //MessageBox.Show("Update Modification Time");
             Workspace wrkspc = Utilities.vcext.Explorer.Workspace;
             int[] chids = Utilities.vcext.History.ActiveWindow.SelectedChangesets.Select(x => x.ChangesetId).ToArray();
@@ -51,6 +54,9 @@ namespace TFSExt.ModifyCheckinDate
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         public static void MySCQuModifyTimeIDCallback(object sender, EventArgs e)
         {
+            if (DialogResult.No == MessageBox.Show("Are you sure you want to modify the Changeset timestamp?", Utilities.AppTitle, MessageBoxButtons.YesNo))
+                return;
+            
             Workspace wrkspc = Utilities.vcext.Explorer.Workspace;
 
             foreach (string serverPath in Utilities.vcext.Explorer.SelectedItems.Select(x => x.SourceServerPath))
@@ -78,6 +84,9 @@ namespace TFSExt.ModifyCheckinDate
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         public static void MyHistModifyTimeCallback(object sender, EventArgs e)
         {
+            if (DialogResult.No == MessageBox.Show("Are you sure you want to modify the Changeset timestamp?", Utilities.AppTitle, MessageBoxButtons.YesNo))
+                return;
+            
             //MessageBox.Show("Update Changeset Time", Utilities.AppTitle);
             int[] chids = Utilities.vcext.History.ActiveWindow.SelectedChangesets.Select(x => x.ChangesetId).ToArray();
             if (chids == null || chids.Length == 0) return;

@@ -1,26 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <Extern href="stdidcmd.h"/>
-  <Extern href="vsshlids.h"/>
+  <Extern href="vsshlids.h"/> 
 
   <Commands package="guidtfsprodPkg">
     <Groups>
-      <Group guid="guidtfsprodCmdSet" id="CustomTeamExpQueryGroup" priority="0x0600">
+      <Group guid="guidtfsprodCmdSet" id="grpIdTeamExpQueryGroup" priority="0x0600">
         <Parent guid="guidTeamExpQueryGroup" id="TeamExpQueryGroup"/>
       </Group>
       
-     <Group guid="guidtfsprodCmdSet" id="CustomWIExp" priority="0x0600">
+     <Group guid="guidtfsprodCmdSet" id="grpIdWIExp" priority="0x0600">
         <Parent guid="guidWIExp" id="menuWIExp" />
       </Group>
 
-      <Group guid="guidtfsprodCmdSet" id="CustomSourceControlExp" priority="0x0600">
+      <Group guid="guidtfsprodCmdSet" id="grpIdSourceControlExp" priority="0x0600">
         <Parent guid="guidSourceControlExp" id="menuSourceControlExp" />
       </Group>    
 
-      <Group guid="guidtfsprodCmdSet" id="CustHistExp" priority="0x0600">
+      <Group guid="guidtfsprodCmdSet" id="grpIdHistExp" priority="0x0600">
         <Parent guid="guidHistExp" id="menuHistExp" />
       </Group>
+
+      <Group guid="guidtfsprodCmdSet" id="CustomTeamExpQueryGroup" priority="0x0600">
+        <Parent guid="guidtfsprodCmdSet" id="submnTeamExpQueryGroup"/>
+      </Group>
+
+      <Group guid="guidtfsprodCmdSet" id="CustomWIExp" priority="0x0600">
+        <Parent guid="guidtfsprodCmdSet" id="submnWIExp"/>
+      </Group>
+
+      <Group guid="guidtfsprodCmdSet" id="CustomSourceControlExp" priority="0x0600">
+        <Parent guid="guidtfsprodCmdSet" id="submnSourceControlExp"/>
+      </Group>
+
+      <Group guid="guidtfsprodCmdSet" id="CustHistExp" priority="0x0600">
+        <Parent guid="guidtfsprodCmdSet" id="submnHistExp"/>
+      </Group>
     </Groups>
+    
+    <Menus>
+      <Menu guid="guidtfsprodCmdSet" id="submnTeamExpQueryGroup" priority="0x0100" type="Menu">
+        <Parent guid="guidtfsprodCmdSet" id="grpIdTeamExpQueryGroup"/>
+        <Strings>
+          <CommandName>TFS Productivity Tools</CommandName>
+          <ButtonText>TFS Productivity Tools</ButtonText>          
+        </Strings>
+      </Menu>
+
+      <Menu guid="guidtfsprodCmdSet" id="submnWIExp" priority="0x0100" type="Menu">
+        <Parent guid="guidtfsprodCmdSet" id="grpIdWIExp"/>
+        <Strings>
+          <CommandName>TFS Productivity Tools</CommandName>
+          <ButtonText>TFS Productivity Tools</ButtonText>
+        </Strings>
+      </Menu>
+
+      <Menu guid="guidtfsprodCmdSet" id="submnSourceControlExp" priority="0x0100" type="Menu">
+        <Parent guid="guidtfsprodCmdSet" id="grpIdSourceControlExp"/>
+        <Strings>
+          <CommandName>TFS Productivity Tools</CommandName>
+          <ButtonText>TFS Productivity Tools</ButtonText>
+        </Strings>
+      </Menu>
+
+      <Menu guid="guidtfsprodCmdSet" id="submnHistExp" priority="0x0100" type="Menu">
+        <Parent guid="guidtfsprodCmdSet" id="grpIdHistExp"/>
+        <Strings>
+          <CommandName>TFS Productivity Tools</CommandName>
+          <ButtonText>TFS Productivity Tools</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
     
     <Buttons>
      <Button guid="guidtfsprodCmdSet" id="cmdidQueryLinkTypes" priority="0x0100" type="Button">
@@ -126,7 +176,7 @@
         <Icon guid="guidImages4" id="bmpQueryLinkTypes" />
         <Strings>
           <CommandName>MyHistRevisions</CommandName>
-          <ButtonText>Show Revisions history</ButtonText>
+          <ButtonText>Show Revision history</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -141,10 +191,6 @@
     </Bitmaps>
  
   </Commands>
-
-
-
-
 
   <Symbols>
     <!-- This is the package guid. -->
@@ -199,7 +245,15 @@
       <IDSymbol name="MyHistModifyTimeID" value="0x5017" />
       <IDSymbol name="MyHistLinkWI" value="0x5104" />
       <IDSymbol name="cmdidCopyComment" value="0x5105" />  
-      <IDSymbol name="MyHistRevisions" value="0x5107" /> 
+      <IDSymbol name="MyHistRevisions" value="0x5107" />
+      <IDSymbol name="submnTeamExpQueryGroup" value="0x5022" />
+      <IDSymbol name="submnWIExp" value="0x5123" />
+      <IDSymbol name="submnSourceControlExp" value="0x5124" />
+      <IDSymbol name="submnHistExp" value="0x5125" />
+      <IDSymbol name="grpIdTeamExpQueryGroup" value="0x6000" />
+      <IDSymbol name="grpIdWIExp" value="0x6001" />
+      <IDSymbol name="grpIdSourceControlExp" value="0x6002" />
+      <IDSymbol name="grpIdHistExp" value="0x6003" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

@@ -9,13 +9,13 @@ namespace tfsprod
         public const uint cmdidDestroyWI = 0x5020;
         public const uint cmdidExportWord = 0x5019;
         public const uint cmdidQueryLinkTypes = 0x5018;
+        public const uint cmdidCopyComment = 0x5105;
         public const uint MyWIExpMergeID = 0x5008;
         public const uint MySCQuMergeID = 0x5006;
         public const uint MySCQuModifyTimeID = 0x5012;
         public const uint MySCHistModifyTimeID = 0x5016;
         public const uint MyHistModifyTimeID = 0x5017;
-        public const uint MyHistLinkWI = 0x5104;
-        public const uint cmdidCopyComment = 0x5105;
-        public const uint MyHistRevisions = 0x5107;    
+        public const uint MyHistLinkWI = 0x5104;       
+        public const uint MyHistRevisions = 0x5107;   
     };
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="16bf0a1d-6239-485f-ac25-6fcd37d514c7" Version="2.0.1" Language="en-US" Publisher="Mark Babayev" />
+    <Identity Id="16bf0a1d-6239-485f-ac25-6fcd37d514c7" Version="2.0.3" Language="en-US" Publisher="Mark Babayev" />
     <DisplayName>TFS Productivity Tools</DisplayName>
     <Description xml:space="preserve">The TFS Productivity Tools project was designed to provide TFS administrators with helper extensions for Source Control or Work Item Tracking tasks.</Description>
     <MoreInfo>https://github.com/mirik123/tfsprod</MoreInfo>
