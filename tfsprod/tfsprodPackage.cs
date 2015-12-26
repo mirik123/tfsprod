@@ -19,9 +19,9 @@ using TFSExt.ShowRevHist;
 namespace tfsprod
 {
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
+    //[InstalledProductRegistration("#110", "#112", "2.1.0", IconResourceID = 400)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    //[ProvideLoadKey("Standard", "2.0.3", "TFS Productivity Tools", "Mark Babayev", 114)]
+    //[ProvideLoadKey("Standard", "2.1.0", "TFS Productivity Tools", "Mark Babayev", 114)]
     [ProvideToolWindow(typeof(MergeWIPane), MultiInstances = false, Style = VsDockStyle.Tabbed, PositionX = 0, PositionY = 0, Width = 900, Height = 750, Transient = true,
         Orientation = ToolWindowOrientation.Left, Window = EnvDTE.Constants.vsWindowKindMainWindow)]
     [ProvideToolWindow(typeof(RevisionHistoryPane), MultiInstances = false, Style = VsDockStyle.Tabbed, PositionX = 0, PositionY = 0, Width = 900, Height = 750, Transient = true,
@@ -177,7 +177,7 @@ namespace tfsprod
 
             Utilities.dialogFactory = dialogFactory;
             Utilities.outputWindow = outputWindow;
-            Utilities.AppTitle = Resources.AppTitle;
+            Utilities.AppTitle = "TFS Productivity Tools";
             Utilities.wistore = wistore;
             Utilities.teamExplorer = teamExplorer;
             Utilities.vsTeamCtxMan = vsTeamCtxMan;

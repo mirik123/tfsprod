@@ -212,9 +212,6 @@
       <IDSymbol name="bmpSCExp" value="1" />
     </GuidSymbol>
     
-    <!--GuidSymbol name="guidTeamExpQueryGroup" value="{2DC8D6BB-916C-4B80-9C52-FD8FC371ACC2}">
-      <IDSymbol name="TeamExpQueryGroup" value="0x0203" />
-    </GuidSymbol--> 
     <GuidSymbol name="guidTeamExpQueryGroup" value="{2DC8D6BB-916C-4B80-9C52-FD8FC371ACC2}">
       <IDSymbol name="TeamExpQueryGroup" value="0x0300" />
     </GuidSymbol>    

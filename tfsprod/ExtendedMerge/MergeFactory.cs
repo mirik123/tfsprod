@@ -17,6 +17,7 @@ namespace TFSExp.ExtendedMerge
         internal const int MergeTypeIndex = 6;
         static internal MergeOptionsEx mergeOpt;
         static internal bool bLinkWIs;
+        static internal bool AutomaticCheckin;
 
         /// <summary>
         /// Gets or sets the merge options enum, see <b>Microsoft.TeamFoundation.VersionControl.Common.MergeOptionsEx</b>.
@@ -36,11 +37,7 @@ namespace TFSExp.ExtendedMerge
         /// <value>
         ///   <c>true</c> if [link work items]; otherwise, <c>false</c>.
         /// </value>
-        static public bool LinkWorkItems
-        {
-            get { return bLinkWIs; }
-            set { bLinkWIs = value; }
-        }
+        static public bool LinkWorkItems;
 
         static internal string FindCommonSharedPath(string[] str)
         {
@@ -183,7 +180,7 @@ namespace TFSExp.ExtendedMerge
                 return;
             }
 
-            if (wrkspc.GetPendingChanges().Length > 0)
+            if (AutomaticCheckin && wrkspc.GetPendingChanges().Length > 0)
             {
                 MessageBox.Show("Please resolve all pending changes before going on.", Utilities.AppTitle);
                 return;
@@ -225,7 +222,7 @@ namespace TFSExp.ExtendedMerge
                 GetStatus sts = wrkspc.Merge((lvItem.Tag as ListViewItemTag).sourcePath, trg, chverspc, chverspc, LockLevel.Unchanged, RecursionType.Full, mergeType);
                 Utilities.OutputCommandString("Merge summary: MergeOptionsEx=" + mergeType + ", NoActionNeeded=" + sts.NoActionNeeded + ", NumFailures=" + sts.NumFailures + ", NumOperations=" + sts.NumOperations + ", NumUpdated=" + sts.NumUpdated + ", NumWarnings=" + sts.NumWarnings);
 
-                if (mergeOptions != MergeOptionsEx.NoMerge)
+                if (AutomaticCheckin)
                 {
                     while (wrkspc.QueryConflicts(ch.Changes.Select(x => x.Item.ServerItem).ToArray(), true).Length > 0)
                     {

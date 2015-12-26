@@ -196,11 +196,6 @@
     <Compile Include="OptionPageGrid.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="RevisionHistory\ShowRevHistPackage.cs" />
     <Compile Include="tfsprodPackage.cs" />
@@ -217,11 +212,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExtendedMerge\MergeWIControl.resx">
       <DependentUpon>MergeWIControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>

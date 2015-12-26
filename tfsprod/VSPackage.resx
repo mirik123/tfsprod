@@ -127,4 +127,7 @@
   <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Package.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>TFS Productivity Tools</value>
+  </data>
 </root>

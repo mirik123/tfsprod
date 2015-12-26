@@ -78,19 +78,45 @@ namespace TFSExp.ExtendedMerge
         public void Initialize()
         {
             MergeFactory.LinkWorkItems = this.toolLinkWIs.Checked;
-            MergeFactory.mergeOptions = (this.toolMAlwaysAcceptMine.Checked ? MergeOptionsEx.AlwaysAcceptMine : this.toolMConservative.Checked ? MergeOptionsEx.Conservative : this.toolMDiscard.Checked ? MergeOptionsEx.NoMerge : MergeOptionsEx.None);
+            MergeFactory.mergeOptions = this.toolMConservative.Checked ? MergeOptionsEx.Conservative : MergeOptionsEx.None;
 
-            this.toolMDiscard.Enabled = true;
             this.toolMConservative.Enabled = true;
             this.toolMNormal.Enabled = true;
             this.toolLinkWIs.Enabled = true;
-            this.toolMAlwaysAcceptMine.Enabled = true;
             this.toolMerge.Enabled = true;
             this.toolRefresh.Enabled = true;
             this.toolResolve.Enabled = true;
             this.button1.Enabled = true;
-            this.toolMarkAllItems.Enabled = true;
-            this.toolUnmarkAllItems.Enabled = true;
+
+            var tableSettings = this.toolStrip1.LayoutSettings as TableLayoutSettings;
+            tableSettings.RowCount = 3;
+            tableSettings.ColumnCount = 8;
+
+            tableSettings.SetCellPosition(toolAutoCheckin, new TableLayoutPanelCellPosition(0, 0));
+            tableSettings.SetRowSpan(toolAutoCheckin, 3);
+
+            tableSettings.SetCellPosition(toolMNormal, new TableLayoutPanelCellPosition(1, 0));
+            tableSettings.SetCellPosition(toolMConservative, new TableLayoutPanelCellPosition(1, 1));
+            tableSettings.SetCellPosition(toolLinkWIs, new TableLayoutPanelCellPosition(1, 2));
+
+            tableSettings.SetCellPosition(toolMerge, new TableLayoutPanelCellPosition(2, 0));
+            tableSettings.SetRowSpan(toolMerge, 3);
+
+            tableSettings.SetCellPosition(toolResolve, new TableLayoutPanelCellPosition(3, 0));
+            tableSettings.SetRowSpan(toolResolve, 3);
+
+            tableSettings.SetCellPosition(toolDChangeset, new TableLayoutPanelCellPosition(4, 0));
+            tableSettings.SetRowSpan(toolDChangeset, 3);
+
+            tableSettings.SetCellPosition(toolDWorkItem, new TableLayoutPanelCellPosition(5, 0));
+            tableSettings.SetRowSpan(toolDWorkItem, 3);
+
+            tableSettings.SetCellPosition(toolRefresh, new TableLayoutPanelCellPosition(6, 0));
+            tableSettings.SetCellPosition(toolEditServerPath, new TableLayoutPanelCellPosition(6, 1));
+            tableSettings.SetCellPosition(toolDServerPath, new TableLayoutPanelCellPosition(6, 2));
+
+            tableSettings.SetCellPosition(toolDClipboard, new TableLayoutPanelCellPosition(7, 0));
+            tableSettings.SetCellPosition(toolGetRelBranches, new TableLayoutPanelCellPosition(7, 1));
         }
 
         /// <summary>
@@ -296,8 +322,24 @@ namespace TFSExp.ExtendedMerge
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             SuppressEvents = true;
-            listView1.Sorting = (listView1.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending);
-            listView1.ListViewItemSorter = new MyListViewSorter(e.Column, listView1.Sorting);
+            if (e.Column == 0)
+            {
+                if (listView1.Columns[0].Text == '\u2714'.ToString())
+                {
+                    listView1.Columns[0].Text = "";
+                    foreach (ListViewItem item in listView1.Items) item.Checked = false;
+                }
+                else
+                {
+                    listView1.Columns[0].Text = '\u2714'.ToString();
+                    foreach (ListViewItem item in listView1.Items) item.Checked = true;
+                }
+            }
+            else
+            {
+                listView1.Sorting = (listView1.Sorting == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending);
+                listView1.ListViewItemSorter = new MyListViewSorter(e.Column, listView1.Sorting);
+            }   
             SuppressEvents = false;
         }
 
@@ -330,11 +372,10 @@ namespace TFSExp.ExtendedMerge
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void toolMDiscard_Click(object sender, EventArgs e)
         {
-            if (!toolMDiscard.Checked) return;
+            //if (!toolMDiscard.Checked) return;
 
             MergeFactory.mergeOptions = MergeOptionsEx.NoMerge;
 
-            toolMAlwaysAcceptMine.Checked = false;
             toolMConservative.Checked = false;
             toolMNormal.Checked = false;
         }
@@ -347,11 +388,10 @@ namespace TFSExp.ExtendedMerge
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void toolMAlwaysAcceptMine_Click(object sender, EventArgs e)
         {
-            if (!toolMAlwaysAcceptMine.Checked) return;
+            //if (!toolMAlwaysAcceptMine.Checked) return;
 
             MergeFactory.mergeOptions = MergeOptionsEx.AlwaysAcceptMine;
 
-            toolMDiscard.Checked = false;
             toolMConservative.Checked = false;
             toolMNormal.Checked = false;
         }
@@ -368,8 +408,6 @@ namespace TFSExp.ExtendedMerge
 
             MergeFactory.mergeOptions = MergeOptionsEx.Conservative;
 
-            toolMDiscard.Checked = false;
-            toolMAlwaysAcceptMine.Checked = false;
             toolMNormal.Checked = false;
         }
 
@@ -385,8 +423,6 @@ namespace TFSExp.ExtendedMerge
 
             MergeFactory.mergeOptions = MergeOptionsEx.None;
 
-            toolMDiscard.Checked = false;
-            toolMAlwaysAcceptMine.Checked = false;
             toolMConservative.Checked = false;
         }
 
@@ -482,32 +518,6 @@ namespace TFSExp.ExtendedMerge
         }
 
         /// <summary>
-        /// Handles the Click event of the toolMarkAllItems control.
-        /// Changes state of all ListView items to checked.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void toolMarkAllItems_Click(object sender, EventArgs e)
-        {
-            SuppressEvents = true;
-            foreach (ListViewItem item in listView1.Items) item.Checked = true;
-            SuppressEvents = false;
-        }
-
-        /// <summary>
-        /// Handles the Click event of the toolUnmarkAllItems control.
-        /// hanges state of all ListView items to unchecked.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void toolUnmarkAllItems_Click(object sender, EventArgs e)
-        {
-            SuppressEvents = true;
-            foreach (ListViewItem item in listView1.Items) item.Checked = false;
-            SuppressEvents = false;
-        }
-
-        /// <summary>
         /// Handles the Click event of the toolEditServerPath control.
         /// Updates ListView column "Server Path" for selected items, see <see cref="EditServerPath"/>
         /// </summary>
@@ -530,6 +540,13 @@ namespace TFSExp.ExtendedMerge
             string str2 = MergeFactory.GetRelatedBranches(ClickedItem.sourcePath).Aggregate((x, y) => x + Environment.NewLine + "---" + y);
 
             MessageBox.Show("Related branches for merge target path:" + Environment.NewLine + "---" + str1 + Environment.NewLine + "Related branches for merge source path:" + Environment.NewLine + "---" + str2, Utilities.AppTitle);
+        }
+
+        private void toolAutoCheckin_Click(object sender, EventArgs e)
+        {
+            MergeFactory.AutomaticCheckin = this.toolAutoCheckin.Checked;
+            if (!this.toolAutoCheckin.Checked)
+                MergeFactory.LinkWorkItems = this.toolLinkWIs.Checked = false;
         }
     }
 }
