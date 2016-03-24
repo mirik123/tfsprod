@@ -76,7 +76,7 @@
             // copyToClipboardToolStripMenuItem
             // 
             this.copyToClipboardToolStripMenuItem.Name = "copyToClipboardToolStripMenuItem";
-            this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(241, 24);
+            this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.copyToClipboardToolStripMenuItem.Text = "Copy to Clipboard";
             // 
             // ctxMenuChangesets
@@ -88,31 +88,31 @@
             this.showServerPathToolStripMenuItem,
             this.editSourcePathToolStripMenuItem});
             this.ctxMenuChangesets.Name = "ctxMenuChangesets";
-            this.ctxMenuChangesets.Size = new System.Drawing.Size(242, 124);
+            this.ctxMenuChangesets.Size = new System.Drawing.Size(203, 114);
             this.ctxMenuChangesets.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ctxMenuChangesets_ItemClicked);
             // 
             // viewChangesetDetailesToolStripMenuItem
             // 
             this.viewChangesetDetailesToolStripMenuItem.Name = "viewChangesetDetailesToolStripMenuItem";
-            this.viewChangesetDetailesToolStripMenuItem.Size = new System.Drawing.Size(241, 24);
+            this.viewChangesetDetailesToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.viewChangesetDetailesToolStripMenuItem.Text = "View Changeset Detailes";
             // 
             // viewWorkItemDetailesToolStripMenuItem
             // 
             this.viewWorkItemDetailesToolStripMenuItem.Name = "viewWorkItemDetailesToolStripMenuItem";
-            this.viewWorkItemDetailesToolStripMenuItem.Size = new System.Drawing.Size(241, 24);
+            this.viewWorkItemDetailesToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.viewWorkItemDetailesToolStripMenuItem.Text = "View Work Item Detailes";
             // 
             // showServerPathToolStripMenuItem
             // 
             this.showServerPathToolStripMenuItem.Name = "showServerPathToolStripMenuItem";
-            this.showServerPathToolStripMenuItem.Size = new System.Drawing.Size(241, 24);
+            this.showServerPathToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.showServerPathToolStripMenuItem.Text = "Navigate to Source Path";
             // 
             // editSourcePathToolStripMenuItem
             // 
             this.editSourcePathToolStripMenuItem.Name = "editSourcePathToolStripMenuItem";
-            this.editSourcePathToolStripMenuItem.Size = new System.Drawing.Size(241, 24);
+            this.editSourcePathToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.editSourcePathToolStripMenuItem.Text = "Edit Source Path";
             // 
             // groupBox1
@@ -122,11 +122,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.toolStrip1);
             this.groupBox1.Controls.Add(this.listView1);
-            this.groupBox1.Location = new System.Drawing.Point(7, 70);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(5, 57);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1312, 708);
+            this.groupBox1.Size = new System.Drawing.Size(984, 575);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Merge Changesets";
@@ -150,10 +148,10 @@
             this.toolGetRelBranches,
             this.toolAutoCheckin});
             this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStrip1.Location = new System.Drawing.Point(4, 19);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 15);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(1298, 64);
+            this.toolStrip1.Size = new System.Drawing.Size(974, 65);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -164,7 +162,7 @@
             this.toolLinkWIs.Image = ((System.Drawing.Image)(resources.GetObject("toolLinkWIs.Image")));
             this.toolLinkWIs.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolLinkWIs.Name = "toolLinkWIs";
-            this.toolLinkWIs.Size = new System.Drawing.Size(152, 24);
+            this.toolLinkWIs.Size = new System.Drawing.Size(126, 20);
             this.toolLinkWIs.Text = "Link to Work Items";
             this.toolLinkWIs.Click += new System.EventHandler(this.toolLinkWIs_Click);
             // 
@@ -177,7 +175,7 @@
             this.toolMNormal.Image = ((System.Drawing.Image)(resources.GetObject("toolMNormal.Image")));
             this.toolMNormal.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolMNormal.Name = "toolMNormal";
-            this.toolMNormal.Size = new System.Drawing.Size(126, 24);
+            this.toolMNormal.Size = new System.Drawing.Size(104, 20);
             this.toolMNormal.Text = "Normal Merge";
             this.toolMNormal.Click += new System.EventHandler(this.toolMNormal_Click);
             // 
@@ -188,7 +186,7 @@
             this.toolMConservative.Image = ((System.Drawing.Image)(resources.GetObject("toolMConservative.Image")));
             this.toolMConservative.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolMConservative.Name = "toolMConservative";
-            this.toolMConservative.Size = new System.Drawing.Size(160, 24);
+            this.toolMConservative.Size = new System.Drawing.Size(132, 20);
             this.toolMConservative.Text = "Conservative Merge";
             this.toolMConservative.Click += new System.EventHandler(this.toolMConservative_Click);
             // 
@@ -199,7 +197,7 @@
             this.toolResolve.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolResolve.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolResolve.Name = "toolResolve";
-            this.toolResolve.Size = new System.Drawing.Size(125, 72);
+            this.toolResolve.Size = new System.Drawing.Size(101, 67);
             this.toolResolve.Text = "Resolve Conflicts";
             this.toolResolve.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolResolve.Click += new System.EventHandler(this.toolResolve_Click);
@@ -210,7 +208,7 @@
             this.toolRefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolRefresh.Image")));
             this.toolRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolRefresh.Name = "toolRefresh";
-            this.toolRefresh.Size = new System.Drawing.Size(167, 24);
+            this.toolRefresh.Size = new System.Drawing.Size(137, 20);
             this.toolRefresh.Text = "Merge Types Refresh";
             this.toolRefresh.Click += new System.EventHandler(this.toolRefresh_Click);
             // 
@@ -221,7 +219,7 @@
             this.toolMerge.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolMerge.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolMerge.Name = "toolMerge";
-            this.toolMerge.Size = new System.Drawing.Size(56, 72);
+            this.toolMerge.Size = new System.Drawing.Size(52, 67);
             this.toolMerge.Text = "Merge";
             this.toolMerge.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolMerge.Click += new System.EventHandler(this.toolMerge_Click);
@@ -233,7 +231,7 @@
             this.toolDChangeset.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolDChangeset.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDChangeset.Name = "toolDChangeset";
-            this.toolDChangeset.Size = new System.Drawing.Size(132, 72);
+            this.toolDChangeset.Size = new System.Drawing.Size(105, 67);
             this.toolDChangeset.Text = "Changeset Details";
             this.toolDChangeset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolDChangeset.Click += new System.EventHandler(this.toolDChangeset_Click);
@@ -245,7 +243,7 @@
             this.toolDWorkItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolDWorkItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDWorkItem.Name = "toolDWorkItem";
-            this.toolDWorkItem.Size = new System.Drawing.Size(132, 72);
+            this.toolDWorkItem.Size = new System.Drawing.Size(104, 67);
             this.toolDWorkItem.Text = "Work Item Details";
             this.toolDWorkItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolDWorkItem.Click += new System.EventHandler(this.toolDWorkItem_Click);
@@ -256,7 +254,7 @@
             this.toolDServerPath.Image = ((System.Drawing.Image)(resources.GetObject("toolDServerPath.Image")));
             this.toolDServerPath.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDServerPath.Name = "toolDServerPath";
-            this.toolDServerPath.Size = new System.Drawing.Size(185, 24);
+            this.toolDServerPath.Size = new System.Drawing.Size(150, 20);
             this.toolDServerPath.Text = "Navigate to Server Path";
             this.toolDServerPath.Click += new System.EventHandler(this.toolDServerPath_Click);
             // 
@@ -265,7 +263,7 @@
             this.toolEditServerPath.Image = ((System.Drawing.Image)(resources.GetObject("toolEditServerPath.Image")));
             this.toolEditServerPath.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolEditServerPath.Name = "toolEditServerPath";
-            this.toolEditServerPath.Size = new System.Drawing.Size(133, 24);
+            this.toolEditServerPath.Size = new System.Drawing.Size(109, 20);
             this.toolEditServerPath.Text = "Edit Server Path";
             this.toolEditServerPath.Click += new System.EventHandler(this.toolEditServerPath_Click);
             // 
@@ -275,7 +273,7 @@
             this.toolDClipboard.Image = ((System.Drawing.Image)(resources.GetObject("toolDClipboard.Image")));
             this.toolDClipboard.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDClipboard.Name = "toolDClipboard";
-            this.toolDClipboard.Size = new System.Drawing.Size(184, 24);
+            this.toolDClipboard.Size = new System.Drawing.Size(151, 20);
             this.toolDClipboard.Text = "Copy Info To Clipboard";
             this.toolDClipboard.Click += new System.EventHandler(this.toolDClipboard_Click);
             // 
@@ -285,7 +283,7 @@
             this.toolGetRelBranches.Image = ((System.Drawing.Image)(resources.GetObject("toolGetRelBranches.Image")));
             this.toolGetRelBranches.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolGetRelBranches.Name = "toolGetRelBranches";
-            this.toolGetRelBranches.Size = new System.Drawing.Size(170, 24);
+            this.toolGetRelBranches.Size = new System.Drawing.Size(138, 20);
             this.toolGetRelBranches.Text = "Get Related Branches";
             this.toolGetRelBranches.Click += new System.EventHandler(this.toolGetRelBranches_Click);
             // 
@@ -296,7 +294,7 @@
             this.toolAutoCheckin.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolAutoCheckin.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolAutoCheckin.Name = "toolAutoCheckin";
-            this.toolAutoCheckin.Size = new System.Drawing.Size(137, 72);
+            this.toolAutoCheckin.Size = new System.Drawing.Size(113, 67);
             this.toolAutoCheckin.Text = "Automatic Checkin";
             this.toolAutoCheckin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolAutoCheckin.Click += new System.EventHandler(this.toolAutoCheckin_Click);
@@ -321,11 +319,11 @@
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.LabelWrap = false;
-            this.listView1.Location = new System.Drawing.Point(5, 85);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listView1.Location = new System.Drawing.Point(4, 82);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listView1.Name = "listView1";
             this.listView1.ShowGroups = false;
-            this.listView1.Size = new System.Drawing.Size(1297, 616);
+            this.listView1.Size = new System.Drawing.Size(974, 488);
             this.listView1.TabIndex = 25;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -384,11 +382,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Location = new System.Drawing.Point(7, 4);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(5, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(1312, 63);
+            this.groupBox2.Size = new System.Drawing.Size(984, 51);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Merge Target Location";
@@ -398,20 +394,18 @@
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(8, 25);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox1.Location = new System.Drawing.Point(6, 20);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(1187, 24);
+            this.comboBox1.Size = new System.Drawing.Size(891, 21);
             this.comboBox1.TabIndex = 31;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(1204, 22);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(903, 18);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 30;
             this.button1.Text = "Browse...";
             this.button1.UseVisualStyleBackColor = true;
@@ -419,13 +413,12 @@
             // 
             // MergeWIControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MergeWIControl";
-            this.Size = new System.Drawing.Size(1319, 782);
+            this.Size = new System.Drawing.Size(989, 635);
             this.ctxMenuChangesets.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
