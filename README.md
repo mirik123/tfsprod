@@ -148,7 +148,6 @@ The ExtendedMerge uses a number of internal Microsoft classes. It can possibly l
 
 |Feature |Classes|
 |--------|-------|
-|Show browse server folder dialog |*Microsoft.TeamFoundation.Build.Controls.VersionControlHelper.ShowServerFolderBrowser*| 
 |Show merge progress dialog |*Microsoft.TeamFoundation.VersionControl.Controls.ProgressMerge*|
 |Show resolve conflicts dialog |*Microsoft.TeamFoundation.VersionControl.Controls.DialogResolveConflicts*|
 |Show WorkItem picker dialog |*Microsoft.TeamFoundation.WorkItemTracking.Controls.WorkItemPickerDialog*|

@@ -13,6 +13,7 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using TFSExp.ExtendedMerge;
 using TFSExt.ShowRevHist;
 
@@ -156,6 +157,12 @@ namespace tfsprod
 
             var TFSExt = dte.GetObject("Microsoft.VisualStudio.TeamFoundation.TeamFoundationServerExt") as TeamFoundationServerExt;
             var vcext = dte.GetObject("Microsoft.VisualStudio.TeamFoundation.VersionControl.VersionControlExt") as VersionControlExt;
+
+            if (TFSExt == null)
+            {
+                MessageBox.Show("The TFS connection isn't found", Utilities.AppTitle);
+                throw new Exception("The TFS connection isn't found");
+            }
 
             var tfscoll = TfsTeamProjectCollectionFactory.GetTeamProjectCollection(new Uri(TFSExt.ActiveProjectContext.DomainUri));
             tfscoll.Connect(Microsoft.TeamFoundation.Framework.Common.ConnectOptions.None);

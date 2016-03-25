@@ -11,13 +11,17 @@ using Microsoft.VisualStudio.TeamFoundation.WorkItemTracking;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing.Design;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using TFSExp.ExtendedMerge;
 using TFSExt.ShowRevHist;
+using Microsoft.TeamFoundation.VersionControl.Controls.Common;
+using System.Windows.Forms.Design;
 
 namespace tfsprod
 {
@@ -51,7 +55,11 @@ namespace tfsprod
             outputText.AppendFormat("{0}: {1} ", caption, text);
             outputText.AppendLine();
             // --- Get a reference to IVsOutputWindow. 
-            if (outputWindow == null) return;
+            if (outputWindow == null)
+            {
+                Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0}: {1} ", caption, text));
+                return;
+            }
 
             // --- Get the window pane for the general output. 
             var guidGeneral = Microsoft.VisualStudio.VSConstants.GUID_OutWindowDebugPane;
@@ -59,6 +67,7 @@ namespace tfsprod
 
             if (Microsoft.VisualStudio.ErrorHandler.Failed(outputWindow.GetPane(ref guidGeneral, out windowPane)))
             {
+                Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0}: {1} ", caption, text));
                 return;
             }
             // --- As the last step, write to the output window pane 
@@ -114,14 +123,33 @@ namespace tfsprod
         }
 
         /// <summary>
-        /// Shows the server folder browser dialog, see <b>Microsoft.TeamFoundation.Build.Controls.VersionControlHelper.ShowServerFolderBrowser</b>.
+        /// Shows the server folder browser dialog.
         /// </summary>
         /// <param name="parent">The parent.</param>
         /// <param name="defaultServerPath">The default server path.</param>
         /// <param name="srvpath">The srvpath.</param>
         static internal void ShowServerFolderDlg(IWin32Window parent, string defaultServerPath, out string srvpath)
         {
-            Assembly asm = Assembly.GetAssembly(typeof(Microsoft.TeamFoundation.Build.Controls.BuildPolicy));
+            //SimpleTreeViewServerFolderDataSource, TreeViewServerFolder
+
+            if (string.IsNullOrEmpty(defaultServerPath))
+                defaultServerPath = "$/";
+
+            DialogResult dialogResult = DialogResult.None;
+            using (DialogChooseServerFolder dlgChooseServerFolder = new DialogChooseServerFolder(Utilities.vcsrv, defaultServerPath))
+            {
+                if (parent is IWin32Window || parent == null)
+                    dialogResult = dlgChooseServerFolder.ShowDialog(parent as IWin32Window);
+                else if (parent is IWindowsFormsEditorService)
+                    dialogResult = ((IWindowsFormsEditorService)parent).ShowDialog(dlgChooseServerFolder);
+
+                if (dialogResult != DialogResult.OK)
+                    srvpath = defaultServerPath;
+                else
+                    srvpath = dlgChooseServerFolder.CurrentServerItem;
+            }
+
+            /*Assembly asm = Assembly.GetAssembly(typeof(Microsoft.TeamFoundation.Build.Controls.BuildPolicy));
             Type type = asm.GetType("Microsoft.TeamFoundation.Build.Controls.VersionControlHelper");
 
             var parmod = new ParameterModifier(4);
@@ -135,9 +163,9 @@ namespace tfsprod
 
             object[] obj = new object[] { parent, vcsrv, defaultServerPath, null };
             DialogResult res = (DialogResult)methodInfo.Invoke(null, obj);
-
-            srvpath = (res == DialogResult.OK) ? (string)obj[3] : defaultServerPath;
+             */
         }
+
 
         /// <summary>
         /// Shows the work item details dialog, see <b>Microsoft.VisualStudio.TeamFoundation.WorkItemTracking.DocumentService.ShowWorkItem</b>.
